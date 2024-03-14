@@ -10,7 +10,7 @@ import CookiesNotice from "@/components/auth/cookies";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "picTuryun",
+  title: "theBarback",
   description: "Using AI to make your life easy!",
   icons: {
     icon: ["/favicon.ico"],

@@ -19,11 +19,11 @@ const ClientButton: React.FC<ClientButtonProps> = async ({
   const cocktails = await fetchDrinks();
   return (
     <>
-      <div>
+      <div className={className}>
         {cocktails.map((cocktail) => {
           return (
             <div
-              className="flex flex-col justify-center items-center w-[20rem] bg-white rounded-md shadow-md p-4 m-4"
+              className="flex flex-col justify-center items-center w-[15rem] bg-white rounded-md shadow-md p-4 m-4"
               key={cocktail.idDrink}
             >
               <h1>{cocktail.strDrink}</h1>
@@ -36,9 +36,9 @@ const ClientButton: React.FC<ClientButtonProps> = async ({
           );
         })}
       </div>
-      <button className={className} onClick={fetchDrinks}>
+      {/* <button className={className} onClick={fetchDrinks}>
         {text}
-      </button>
+      </button> */}
     </>
   );
 };

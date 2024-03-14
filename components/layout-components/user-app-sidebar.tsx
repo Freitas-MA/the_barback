@@ -111,7 +111,7 @@ export default async function UserAppSidebar({
         </div>
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-            More Models
+            Discover the world
           </h2>
           <div className="space-y-1">
             <Button
@@ -138,7 +138,7 @@ export default async function UserAppSidebar({
               {/* TODO: Apply the new model
               url: https://replicate.com/stability-ai/sdxl
               */}
-              <h3>Stability AI</h3>
+              <h3>AI Cocktails</h3>
             </Button>
             <Button
               variant="ghost"
@@ -158,7 +158,7 @@ export default async function UserAppSidebar({
                 <circle cx="8" cy="18" r="4" />
                 <path d="M12 18V2l7 4" />
               </svg>
-              Yan ops - Face Swap
+              Classroom 
               {/* TODO: Apply the new model
               url: https://replicate.com/yan-ops/face_swap
               */}{" "}
@@ -181,7 +181,7 @@ export default async function UserAppSidebar({
                 <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
-              Magic Profile Pic
+              Stock management
               {/* https://replicate.com/catio-apps/photoaistudio-generate
                 TODO: Apply the new model
               */}
