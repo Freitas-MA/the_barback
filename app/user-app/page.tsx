@@ -3,11 +3,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { getUniqueDrinks } from "@/components/handlers/scrapCocktail";
-import ClientButton from "./../../components/handlers/clientButton";
-import SearchBar from "@/components/searchBar/seachBar";
+import dynamic from 'next/dynamic';
 
 export default async function page() {
-  let drink;
+  // let drink;
   const supabase = createServerComponentClient({ cookies });
   // const scrapCocktail = async () => {
   //   console.log("Clicou");
@@ -40,6 +39,13 @@ export default async function page() {
   // }
 
   // Uploading the List of drinks to the Supabase database
+
+  const SearchBar = dynamic(() => import('@/components/searchBar/seachBar'), {
+    ssr: false
+  });
+  const ClientButton = dynamic(() => import('@/components/handlers/clientButton'), {
+    ssr: false
+  });
   return (
     <div className="flex flex-col min-h-screen w-full">
       <SearchBar/>

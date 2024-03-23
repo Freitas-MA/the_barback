@@ -6,6 +6,7 @@ import UserAppSidebar from "@/components/layout-components/user-app-sidebar";
 import { Analytics } from "@vercel/analytics/react";
 import AppSignature from "@/components/layout-components/app.signature";
 import CookiesNotice from "@/components/auth/cookies";
+import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
 
