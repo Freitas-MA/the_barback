@@ -18,11 +18,11 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 		return drinkList;
 	};
 	const cardStyle =
-		"flex flex-col justify-start text-center items-center gap-2 w-[15rem] h-[18rem] bg-white rounded-md shadow-md p-4 m-4";
+		"flex flex-col justify-between text-center items-center gap-2 w-[15rem] h-[18rem] bg-white rounded-md shadow-md p-4 m-4";
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-    // @ts-expect-error
+		// @ts-expect-error
 		fetchDrinks().then((cocktial) => setCocktails(cocktial));
 	}, []);
 
@@ -37,7 +37,7 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 						.fill(null)
 						.map((_, index) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <div className={cardStyle} key={index}>
+							<div className={cardStyle} key={index}>
 								<h1>Loading...</h1>
 							</div>
 						))}
@@ -45,25 +45,40 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 			) : (
 				// Content component when data is available
 				<div className={className}>
-{cocktails.map((cocktail) => (
-  // @ts-expect-error
-  <div className={cardStyle} key={cocktail.idDrink}>
-    {/* @ts-expect-error */}
-    <h1>{cocktail.strDrink}</h1>
-    <img
-      /* @ts-expect-error */
-      src={cocktail.strDrinkThumb}
-      /* @ts-expect-error */
-      alt={cocktail.strDrink}
-      className="w-40"
-    />
-  </div>
-))}
+					{cocktails.map((cocktail) => (
+						// @ts-expect-error
+						<div className={cardStyle} key={cocktail.idDrink}>
+							<div>
+								{/* @ts-expect-error */}
+								<h1>{cocktail.strDrink}</h1>
+								<img
+									/* @ts-expect-error */
+									src={cocktail.strDrinkThumb}
+									/* @ts-expect-error */
+									alt={cocktail.strDrink}
+									className="w-40 rounded-md"
+								/>
+							</div>
+							<div className="flex flex-row flex-nowrap gap-1">
+								{/* @ts-expect-error */}
+								<button
+									className="rounded-md shadow-md p-2 text-xs"
+									type="button"
+								>
+									{cocktail.strCategory}
+								</button>
+								{/* @ts-expect-error */}
+								<button
+									className="rounded-md shadow-md p-2 text-xs"
+									type="button"
+								>
+									{cocktail.strAlcoholic}
+								</button>
+							</div>
+						</div>
+					))}
 				</div>
 			)}
-			<button type="button" className={className} onClick={fetchDrinks}>
-				{text}
-			</button>
 		</>
 	);
 };

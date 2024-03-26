@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} relative`}>
         <UserAppHeader />
-        <div className="flex pt-10">
+        <div className="flex pt-10 pr-4">
           <UserAppSidebar className="hidden md:block z-10 border-solid border-black" />
           {children}
           <Analytics />
