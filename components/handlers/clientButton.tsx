@@ -1,5 +1,4 @@
 "use client";
-
 import { getUniqueDrinks } from "./scrapCocktail";
 import { useState, useEffect } from "react";
 
@@ -18,7 +17,7 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 		return drinkList;
 	};
 	const cardStyle =
-		"flex flex-col justify-between text-center items-center gap-2 w-[15rem] h-[18rem] bg-white rounded-md shadow-md p-4 m-4";
+		"flex flex-col justify-between text-center items-center gap-2 w-[15rem] h-[18rem] bg-white rounded-md shadow-md p-4 m-4 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105";
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -45,10 +44,11 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 			) : (
 				// Content component when data is available
 				<div className={className}>
+					<span>Teste</span>
 					{cocktails.map((cocktail) => (
 						// @ts-expect-error
 						<div className={cardStyle} key={cocktail.idDrink}>
-							<div>
+							<div className="flex flex-col items-center justify-center">
 								{/* @ts-expect-error */}
 								<h1>{cocktail.strDrink}</h1>
 								<img
@@ -60,18 +60,18 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 								/>
 							</div>
 							<div className="flex flex-row flex-nowrap gap-1">
-								{/* @ts-expect-error */}
 								<button
 									className="rounded-md shadow-md p-2 text-xs"
 									type="button"
-								>
+									>
+									{/* @ts-expect-error */}
 									{cocktail.strCategory}
 								</button>
-								{/* @ts-expect-error */}
 								<button
 									className="rounded-md shadow-md p-2 text-xs"
 									type="button"
-								>
+									>
+									{/* @ts-expect-error */}
 									{cocktail.strAlcoholic}
 								</button>
 							</div>

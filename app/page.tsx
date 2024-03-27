@@ -4,6 +4,12 @@ import { cookies } from "next/headers";
 import HomeSection from "@/components/top-components/home";
 import AuthSection from "@/components/auth/authenticationSection";
 
+/**
+ * Renders the Home page component.
+ * This component checks if the user is logged in and renders the appropriate section.
+ * If the user is not logged in, it renders the AuthSection component.
+ * If the user is logged in, it renders the HomeSection component.
+ */
 export default async function Home() {
 	// Initialize a variable to track if the user is logged in
 	let loggedIn = false;
@@ -19,17 +25,17 @@ export default async function Home() {
 		// If a session exists, set the loggedIn variable to true
 		if (session) {
 			loggedIn = true;
-      console.log("Home", loggedIn);
 		}
 	} catch (error) {
 		// Log any errors that occur during the authentication process
 		console.log("Home", error);
 	}
 
-  console.log("Home", loggedIn);
-
+	// If the user is not logged in, render the AuthSection component
 	if (!loggedIn) {
-    return <AuthSection />;
+		return <AuthSection />;
 	}
+
+	// If the user is logged in, render the HomeSection component
 	return <HomeSection />;
 }

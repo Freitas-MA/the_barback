@@ -14,7 +14,7 @@ export default async function HomeSection() {
 	return (
 		<section className="flex flex-col min-h-screen w-full">
 			<SearchBar />
-			<ClientButton className="flex flex-row flex-wrap border border-blue-500 w-full justify-center items-center mt-5" />
+			<ClientButton className="flex flex-row flex-wrap w-full justify-center items-center mt-5" />
 		</section>
 	);
 }
