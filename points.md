@@ -33,3 +33,45 @@ Logica para subir os cocktails sacados do thecocktailDB
   // }
 
   // Uploading the List of drinks to the Supabase database
+
+update de bd with new cocktails 
+
+  async function insertCocktails() {
+  try {
+    for (const cocktail of cocktails) {
+      const { data: existingCocktail, error } = await supabase
+        .from('cocktails')
+        .select('id')
+        .eq('id', cocktail.idDrink)
+        .single();
+
+      if (error) {
+        throw error;
+      }
+
+      if (!existingCocktail) {
+        const { data: insertedCocktail, error: insertError } = await supabase
+          .from('cocktails')
+          .insert({
+            id: cocktail.idDrink,
+            name: cocktail.strDrink,
+            category: cocktail.strCategory || '',
+            alcoholic: cocktail.strAlcoholic || '',
+            glass: cocktail.strGlass || '',
+            instructions: cocktail.strInstructions || '',
+            thumb_url: cocktail.strDrinkThumb || '',
+          });
+
+        if (insertError) {
+          console.error(`Erro ao inserir cocktail ${cocktail.idDrink}:`, insertError);
+        } else {
+          console.log(`Cocktail com ID ${cocktail.idDrink} inserido com sucesso.`);
+        }
+      } else {
+        console.log(`Cocktail com ID ${cocktail.idDrink} já existe no banco de dados.`);
+      }
+    }
+  } catch (error) {
+    console.error('Erro ao inserir cocktails:', error.message || error);
+  }
+}

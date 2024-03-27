@@ -24,7 +24,7 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 		// @ts-expect-error
 		fetchDrinks().then((cocktial) => setCocktails(cocktial));
 	}, []);
-
+	console.log(cocktails);
 	return (
 		<>
 			{!cocktails.length ? (
