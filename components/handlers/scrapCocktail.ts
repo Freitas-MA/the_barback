@@ -74,7 +74,7 @@ function delay(ms: number) {
 export async function getUniqueDrinks(windowLocation: string): Promise<DrinkData[]> {
 	const drinks: DrinkData[] = [];
 	for (let i = 0; i < 10; i++) {
-		await delay(500); // Espera por 0.5 segundos
+		await delay(50); // Espera por 0.5 segundos
 		const drinkData = await getDrinkData(windowLocation);
 		if (!drinks.find((drink) => drink.idDrink === drinkData.idDrink)) {
 			// Removendo as propriedades nulas

@@ -1,6 +1,7 @@
 "use client";
 import { getUniqueDrinks } from "./scrapCocktail";
 import { useState, useEffect } from "react";
+import { cocktails as fetchCocktails } from "./functions";
 
 interface ClientButtonProps {
 	className: string;
@@ -25,6 +26,15 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 		fetchDrinks().then((cocktial) => setCocktails(cocktial));
 	}, []);
 	console.log(cocktails);
+	const handleFetchCocktails = async () => {
+		try {
+			const cocktailData = await fetchCocktails(windowLocation);
+			console.log('Pesquisa',cocktailData);
+		} catch (error) {
+			console.error("Erro ao buscar os cocktails:", error);
+		}
+	};
+	
 	return (
 		<>
 			{!cocktails.length ? (
@@ -44,7 +54,7 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 			) : (
 				// Content component when data is available
 				<div className={className}>
-					<span>Teste</span>
+					<button type="button" onClick={handleFetchCocktails} >Click-me</button>
 					{cocktails.map((cocktail) => (
 						// @ts-expect-error
 						<div className={cardStyle} key={cocktail.idDrink}>
