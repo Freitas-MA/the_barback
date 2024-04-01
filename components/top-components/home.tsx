@@ -1,7 +1,10 @@
 // Import necessary components and libraries
 import dynamic from "next/dynamic";
+import CocktailsHome from "./cocktails.home";
 
-export default async function HomeSection() {
+
+
+const HomeSection = () => {
 	const SearchBar = dynamic(() => import("@/components/searchBar/seachBar"), {
 		ssr: false,
 	});
@@ -11,10 +14,13 @@ export default async function HomeSection() {
 			ssr: false,
 		},
 	);
+
 	return (
 		<section className="flex flex-col min-h-screen w-full">
 			<SearchBar />
-			<ClientButton className="flex flex-row flex-wrap w-full justify-center items-center mt-5" />
+			<CocktailsHome />
 		</section>
 	);
 }
+
+export default HomeSection;

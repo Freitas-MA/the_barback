@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import Link from "next/link";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
@@ -32,46 +33,50 @@ export default async function UserAppSidebar({
 						Discover
 					</h2>
 					<div className="space-y-1">
-						<Button variant="secondary" className="w-full justify-start">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								className="mr-2 h-4 w-4"
+						<Link href="/">
+							<Button variant="secondary" className="w-full justify-start">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									className="mr-2 h-4 w-4"
+								>
+									<title>Public Collection</title>
+									<circle cx="12" cy="12" r="10" />
+									<polygon points="10 8 16 12 10 16 10 8" />
+								</svg>
+								Public Collection
+							</Button>
+						</Link>
+						<Link href="/search">
+							<Button
+								variant="ghost"
+								disabled={false}
+								className="w-full justify-start"
 							>
-								<title>Public Collection</title>
-								<circle cx="12" cy="12" r="10" />
-								<polygon points="10 8 16 12 10 16 10 8" />
-							</svg>
-							Public Collection
-						</Button>
-						<Button
-							variant="ghost"
-							disabled={true}
-							className="w-full justify-start"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								className="mr-2 h-4 w-4"
-							>
-								<title>Public Collection</title>
-								<rect width="7" height="7" x="3" y="3" rx="1" />
-								<rect width="7" height="7" x="14" y="3" rx="1" />
-								<rect width="7" height="7" x="14" y="14" rx="1" />
-								<rect width="7" height="7" x="3" y="14" rx="1" />
-							</svg>
-							My Collection
-						</Button>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									className="mr-2 h-4 w-4"
+								>
+									<title>Public Collection</title>
+									<rect width="7" height="7" x="3" y="3" rx="1" />
+									<rect width="7" height="7" x="14" y="3" rx="1" />
+									<rect width="7" height="7" x="14" y="14" rx="1" />
+									<rect width="7" height="7" x="3" y="14" rx="1" />
+								</svg>
+								Search Collection
+							</Button>
+						</Link>
 						<Button
 							variant="ghost"
 							disabled={true}
@@ -103,7 +108,7 @@ export default async function UserAppSidebar({
 								className="bi bi-incognito mr-2"
 								viewBox="0 0 16 16"
 							>
-                <title>Public Collection</title>
+								<title>Public Collection</title>
 								<path
 									fillRule="evenodd"
 									d="m4.736 1.968-.892 3.269-.014.058C2.113 5.568 1 6.006 1 6.5 1 7.328 4.134 8 8 8s7-.672 7-1.5c0-.494-1.113-.932-2.83-1.205l-.014-.058-.892-3.27c-.146-.533-.698-.849-1.239-.734C9.411 1.363 8.62 1.5 8 1.5s-1.411-.136-2.025-.267c-.541-.115-1.093.2-1.239.735m.015 3.867a.25.25 0 0 1 .274-.224c.9.092 1.91.143 2.975.143a30 30 0 0 0 2.975-.143.25.25 0 0 1 .05.498c-.918.093-1.944.145-3.025.145s-2.107-.052-3.025-.145a.25.25 0 0 1-.224-.274M3.5 10h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5m-1.5.5q.001-.264.085-.5H2a.5.5 0 0 1 0-1h3.5a1.5 1.5 0 0 1 1.488 1.312 3.5 3.5 0 0 1 2.024 0A1.5 1.5 0 0 1 10.5 9H14a.5.5 0 0 1 0 1h-.085q.084.236.085.5v1a2.5 2.5 0 0 1-5 0v-.14l-.21-.07a2.5 2.5 0 0 0-1.58 0l-.21.07v.14a2.5 2.5 0 0 1-5 0zm8.5-.5h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5"
@@ -133,16 +138,13 @@ export default async function UserAppSidebar({
 								strokeLinejoin="round"
 								className="mr-2 h-4 w-4"
 							>
-                <title>Public Collection</title>
+								<title>Public Collection</title>
 								<path d="M21 15V6" />
 								<path d="M18.5 18a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
 								<path d="M12 12H3" />
 								<path d="M16 6H3" />
 								<path d="M12 18H3" />
 							</svg>
-							{/* TODO: Apply the new model
-              url: https://replicate.com/stability-ai/sdxl
-              */}
 							<h3>AI Cocktails</h3>
 						</Button>
 						<Button
@@ -160,14 +162,11 @@ export default async function UserAppSidebar({
 								strokeLinejoin="round"
 								className="mr-2 h-4 w-4"
 							>
-                <title>Public Collection</title>
+								<title>Public Collection</title>
 								<circle cx="8" cy="18" r="4" />
 								<path d="M12 18V2l7 4" />
 							</svg>
 							Classroom
-							{/* TODO: Apply the new model
-              url: https://replicate.com/yan-ops/face_swap
-              */}{" "}
 						</Button>
 						<Button
 							variant="ghost"
@@ -184,14 +183,11 @@ export default async function UserAppSidebar({
 								strokeLinejoin="round"
 								className="mr-2 h-4 w-4"
 							>
-                <title>Public Collection</title>
+								<title>Public Collection</title>
 								<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
 								<circle cx="12" cy="7" r="4" />
 							</svg>
 							Stock management
-							{/* https://replicate.com/catio-apps/photoaistudio-generate
-                TODO: Apply the new model
-              */}
 						</Button>
 					</div>
 				</div>

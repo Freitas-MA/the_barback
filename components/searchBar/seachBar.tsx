@@ -1,15 +1,18 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
 import { IoMdSearch } from "react-icons/io";
-import { searchQueryAtom, searchResultsAtom } from "../atoms";
+import { searchQueryAtom, searchResultsAtom, localUrlAtom } from "../atoms";
 import { useAtom } from "jotai";
+import { searchCocktailConstructor } from "../handlers/functions";
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [searchQuery, setSearchQuery] = useAtom(searchQueryAtom);
 	const [searchResults, setSearchResults] = useAtom(searchResultsAtom);
 	const [cocktail, setCocktail] = useState("");
+	const [dontUse, setLocalUrl] = useAtom(localUrlAtom);
 
+	const windowLocation = window.location.origin;
 	const fetchCocktail = async (searchQuery: string) => {
 		try {
 			const cocktailData = await fetch(
@@ -17,14 +20,20 @@ export default function SearchBar() {
 			);
 			const fetchedCocktail = await cocktailData.json();
 			setCocktail(fetchedCocktail);
+			console.log(cocktail)
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	const handleSearch = () => {
-		setSearchQuery(searchTerm);
+	const handleSearch = async () => {
+		const res = await searchCocktailConstructor(searchQuery);
+		setSearchResults(res);
 	};
+
+	const handleNewSearch = () => {
+		console.log('clicked')
+	}
 
 
 	return (

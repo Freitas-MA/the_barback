@@ -45,6 +45,7 @@ interface FormattedDrink {
     strCategory: string;
     strAlcoholic: string;
     instructions: string;
+    strDrinkThumb: string;
     recipe: { [ingredient: string]: string };
 }
 
@@ -73,6 +74,7 @@ async function formatData(data: { drinks: Drink[] }): Promise<{ data: FormattedD
         strDrink: drink.strDrink,
         strCategory: drink.strCategory,
         strAlcoholic: drink.strAlcoholic,
+        strDrinkThumb: drink.strDrinkThumb,
         recipe: recipe,
         instructions: drink.strInstructions,
     };

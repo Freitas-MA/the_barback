@@ -1,43 +1,30 @@
 "use client";
-import { getUniqueDrinks } from "./scrapCocktail";
-import { useState, useEffect } from "react";
-import { cocktails as fetchCocktails } from "./functions";
+import { use, useEffect, useState } from "react";
+import { cocktailsConstructor } from "./functions";
 
 interface ClientButtonProps {
 	className: string;
 	text?: string | "Call List of drinks";
 }
-
 const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 	const windowLocation = window.location.origin;
 
-	const [cocktails, setCocktails] = useState([]);
+	const [loading, setLoading] = useState(true);
 
-	const fetchDrinks = async () => {
-		const drinkList = await getUniqueDrinks(windowLocation);
-		return drinkList;
-	};
+	const cocktails = use(cocktailsConstructor(windowLocation));
+
 	const cardStyle =
 		"flex flex-col justify-between text-center items-center gap-2 w-[15rem] h-[18rem] bg-white rounded-md shadow-md p-4 m-4 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105";
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	useEffect(() => {
-		// @ts-expect-error
-		fetchDrinks().then((cocktial) => setCocktails(cocktial));
-	}, []);
-	console.log(cocktails);
-	const handleFetchCocktails = async () => {
-		try {
-			const cocktailData = await fetchCocktails(windowLocation);
-			console.log('Pesquisa',cocktailData);
-		} catch (error) {
-			console.error("Erro ao buscar os cocktails:", error);
-		}
-	};
-	
+		useEffect(() => {
+			setTimeout(() => {
+				setLoading(false);
+			}, 2000);
+		}, []);
+
 	return (
 		<>
-			{!cocktails.length ? (
+			{loading ? (
 				// Loading component using placeholder array
 				<div className={className}>
 					{" "}
@@ -54,17 +41,15 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 			) : (
 				// Content component when data is available
 				<div className={className}>
-					<button type="button" onClick={handleFetchCocktails} >Click-me</button>
+					{/* <button type="button" onClick={handleFetchCocktails}>
+						Click-me
+					</button> */}
 					{cocktails.map((cocktail) => (
-						// @ts-expect-error
 						<div className={cardStyle} key={cocktail.idDrink}>
 							<div className="flex flex-col items-center justify-center">
-								{/* @ts-expect-error */}
 								<h1>{cocktail.strDrink}</h1>
 								<img
-									/* @ts-expect-error */
 									src={cocktail.strDrinkThumb}
-									/* @ts-expect-error */
 									alt={cocktail.strDrink}
 									className="w-40 rounded-md"
 								/>
@@ -73,15 +58,13 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 								<button
 									className="rounded-md shadow-md p-2 text-xs"
 									type="button"
-									>
-									{/* @ts-expect-error */}
+								>
 									{cocktail.strCategory}
 								</button>
 								<button
 									className="rounded-md shadow-md p-2 text-xs"
 									type="button"
-									>
-									{/* @ts-expect-error */}
+								>
 									{cocktail.strAlcoholic}
 								</button>
 							</div>
@@ -92,5 +75,6 @@ const ClientButton: React.FC<ClientButtonProps> = ({ className, text }) => {
 		</>
 	);
 };
+
 
 export default ClientButton;
