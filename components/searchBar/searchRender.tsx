@@ -1,11 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAtom } from "jotai";
 import {
 	searchQueryAtom,
 	searchResultsAtom,
 	localUrlAtom,
 } from "@/components/atoms";
+import { useRouter } from 'next/navigation'
 import CardCocktail from "../common/card";
 import type { FormattedDrink } from "@/types";
 

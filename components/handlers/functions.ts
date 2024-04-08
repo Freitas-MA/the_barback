@@ -1,4 +1,3 @@
-
 import type { Drink, FormattedDrink } from "@/types";
 
 /**
@@ -82,17 +81,16 @@ export const fetchCocktails = async (windowLocation: string) => {
 export const cocktailsConstructor = async (windowLocation: string) => {
 	const cocktailList = [];
 	for (let i = 0; i < 10; i++) {
-		const cocktailResponse = await fetchCocktails(windowLocation);
-		const cocktailData = await cocktailResponse;
+		const cocktailData = await fetchCocktails(windowLocation);
 		cocktailList.push(cocktailData.data);
 
 		await new Promise((resolve) => setTimeout(resolve, 250));
 	}
-	console.log('Function side',cocktailList);
+	console.log("Function side constructor", cocktailList);
 	if (cocktailList.length === 0) {
-        throw new Error("No drinks found");
-    }
-    return cocktailList;
+		throw new Error("No drinks found");
+	}
+	return cocktailList;
 };
 
 /**
@@ -135,15 +133,15 @@ export const searchCocktailConstructor = async (cocktail: string) => {
 	const cocktailResponse = await searchCocktail(cocktail);
 	const { drinks } = await cocktailResponse;
 	console.log(drinks);
-	if(drinks) {
+	if (drinks) {
 		for (let i = 0; i < drinks.length; i++) {
 			const formattedData = await formatData({ drinks: [drinks[i]] });
 			cocktailList.push(formattedData.data);
-		} 
+		}
 	} else {
 		console.log("No drinks found");
 		throw new Error("No drinks found");
 	}
-	console.log('Function side',cocktailList);
+	console.log("Function side", cocktailList);
 	return cocktailList;
 };

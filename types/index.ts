@@ -1,3 +1,4 @@
+import type { useRouter } from 'next/navigation';
 interface FileObject {
     name: string
     bucket_id: string
@@ -60,3 +61,22 @@ export interface FormattedDrink {
 	strDrinkThumb: string;
 	recipe: { [ingredient: string]: string };
 }
+// // Create the AppRouterInstance type// types.ts or any other appropriate location
+
+
+declare module 'next/router' {
+  interface Router {
+    events: {
+      on(event: 'routeChangeStart', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
+      on(event: 'routeChangeComplete', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
+      on(event: 'routeChangeError', callback: (err: any, url: string) => void): void;
+      on(event: 'beforeHistoryChange', callback: (url: string) => void): void;
+      off(event: 'routeChangeStart', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
+      off(event: 'routeChangeComplete', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
+      off(event: 'routeChangeError', callback: (err: any, url: string) => void): void;
+      off(event: 'beforeHistoryChange', callback: (url: string) => void): void;
+    };
+  }
+}
+
+export type AppRouterInstance = Router;
