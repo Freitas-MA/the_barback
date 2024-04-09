@@ -7,11 +7,13 @@ import { searchCocktailConstructor } from "@/components/handlers/functions";
 
 export default async function SearchResults() {
 	const { id } = useParams();
+	const idString = Array.isArray(id) ? id[0] : id;
 	const [cocktails, setCocktails] = useState<FormattedDrink[]>([]);
 	const className =
 		"flex flex-row flex-wrap w-full justify-center items-center mt-5";
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		const res = searchCocktailConstructor(id);
+		const res = searchCocktailConstructor(idString);
 		res.then((data) => {
 			setCocktails(data);
 		});
