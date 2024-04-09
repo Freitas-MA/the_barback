@@ -84,7 +84,7 @@ export const cocktailsConstructor = async (windowLocation: string) => {
 		const cocktailData = await fetchCocktails(windowLocation);
 		cocktailList.push(cocktailData.data);
 
-		await new Promise((resolve) => setTimeout(resolve, 250));
+		await new Promise((resolve) => setTimeout(resolve, 500));
 	}
 	console.log("Function side constructor", cocktailList);
 	if (cocktailList.length === 0) {
