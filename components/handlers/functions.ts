@@ -40,7 +40,7 @@ export const fetchCocktails = async (windowLocation: string) => {
 		headers: {
 			"Cache-Control": "no-cache",
 			Pragma: "no-cache",
-			"X-Timestamp": Date.now(), // Example cache busting header
+			"X-Timestamp": Date.now().toString(), // Example cache busting header
 		},
 	});
 	const data = await response.json();
