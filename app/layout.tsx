@@ -36,17 +36,17 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={`${inter.className} relative`}>
+			<body className={`${inter.className} relative min-h-screen`}>
 				<Provider>
 					<UserAppHeader />
 					<div className="flex pt-10 pr-4">
 						<UserAppSidebar className="hidden md:block z-10 border-solid border-black" />
 						{children}
-						<Analytics />
 					</div>
 					<CookiesNotice className="flex flex-col fixed bottom-8 left-[50%] translate-x-[-50%] w-[350px] p-4 rounded-md bg-yellow-500 text-white text-center" />
 					<AppSignature />
 				</Provider>
+				<Analytics />
 			</body>
 		</html>
 	);

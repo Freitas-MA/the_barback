@@ -19,7 +19,7 @@ async function formatData(data: { drinks: Drink[] }): Promise<{
 		}
 	}
 
- const formattedDrink: FormattedDrink = {
+	const formattedDrink: FormattedDrink = {
 		idDrink: drink.idDrink,
 		strDrink: drink.strDrink,
 		strCategory: drink.strCategory,

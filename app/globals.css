@@ -74,3 +74,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.minHeightSidebar {
+  min-height: calc(100vh - 96px);
+}
+
+.minHeightHome {
+  min-height: calc(100vh - 48px);
+}

@@ -26,7 +26,12 @@ export default async function UserAppSidebar({
 	}
 
 	return loggedIn ? (
-		<div className={cn("pb-12 max-w-[300px]", classNameProp)}>
+		<div
+			className={cn(
+				"pb-12 max-w-[300px] minHeightSidebar",
+				classNameProp,
+			)}
+		>
 			<div className="space-y-4 py-4">
 				<div className="px-3 py-2">
 					<h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
