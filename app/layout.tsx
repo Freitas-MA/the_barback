@@ -39,7 +39,7 @@ export default function RootLayout({
 			<body className={`${inter.className} relative min-h-screen`}>
 				<Provider>
 					<UserAppHeader />
-					<div className="flex pt-10 pr-4">
+					<div className=" w-screen flex pt-10 pr-4">
 						<UserAppSidebar className="hidden md:block z-10 border-solid border-black" />
 						{children}
 					</div>

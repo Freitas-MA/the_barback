@@ -2,14 +2,23 @@
 import { useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import Cookies from 'js-cookie';
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState("");
+	const [searchHistory, setSearchHistory] = useState<string[]>([]);
 	const router = useRouter();
 
 	const handleSearch = (event: { preventDefault: () => void }) => {
 		event.preventDefault();
+		   // Adiciona o termo de pesquisa ao histórico
+		   setSearchHistory((prevHistory) => [...prevHistory, searchTerm]);
 
+		   // Atualiza o cookie com o histórico atualizado
+		   Cookies.set('searchHistory', JSON.stringify(searchHistory));
+	   
+		   // Realiza a pesquisa com o termo de pesquisa
+		   // ... (sua lógica de pesquisa)
 		// Navegue para a página de pesquisa com o termo de pesquisa na URL
 		router.push(
 			`/search/${encodeURIComponent(searchTerm.toLocaleLowerCase())}`,
@@ -39,21 +48,25 @@ export default function SearchBar() {
 						// Check for Enter key
 						handleSearch(e); // Call the `handleSearch` function
 					}
-        }}
-      />
-      <div className="flex flex-row gap-0 -translate-x-6 z-20">
-        <button
-          type="submit"
-          className={`flex justify-center h-6 items-center px-1 ${searchTerm ? "opacity-100" : "opacity-0 -z-10"}`}
-          onClick={handleClearSearch}
-        >
-          {" "}
-          X{" "}
-        </button>
+				}}
+			/>
+			<div className="flex flex-row gap-0 -translate-x-6 z-20">
+				<button
+					type="submit"
+					className={`flex justify-center h-6 items-center px-1 ${
+						searchTerm ? "opacity-100" : "opacity-0 -z-10"
+					}`}
+					onClick={handleClearSearch}
+				>
+					{" "}
+					X{" "}
+				</button>
 
-        <button
-          className={"flex justify-center h-7 items-center border border-gray-200 bg bg-green-400 pl-2 pr-1 shadow-lg rounded-md z-20"}
-          type="submit" // Keep the `type="submit"` for form submission behavior (optional)
+				<button
+					className={
+						"flex justify-center h-7 items-center border border-gray-200 bg bg-green-400 pl-2 pr-1 shadow-lg rounded-md z-20"
+					}
+					type="submit" // Keep the `type="submit"` for form submission behavior (optional)
 					onClick={handleSearch}
 				>
 					<IoMdSearch />{" "}

@@ -13,12 +13,31 @@ export default async function SearchResults() {
 		"flex flex-row flex-wrap w-full justify-center items-center mt-5";
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
-		const res = searchCocktailConstructor(idString);
-		res.then((data) => {
-			setCocktails(data);
-		});
+		if (idString) {
+			const fetchCocktails = async () => {
+				try {
+					const response = await searchCocktailConstructor(idString);
+					setCocktails( response || [])
+				} catch (error) {
+					console.error("Error fetching cocktails:", error);
+					throw new Error(
+						"Sorry, something goes worrong, try again later",
+						error,
+					);
+				}
+			};
+			fetchCocktails();
+		}
 	}, []);
 
+	if (!idString) {
+		return (
+			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center border border-black mt-5">
+				<h2 className="text-4xl font-bold">Sorry, no cocktail found here.</h2>
+				<p>Please, search another one on the search bar.</p>
+			</div>
+		);
+	}
 	return (
 		<>
 			{/* // Content component when data is available */}

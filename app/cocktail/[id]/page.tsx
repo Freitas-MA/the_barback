@@ -25,7 +25,7 @@ export default function CocktailDetails() {
 	}, [idString]);
 
 	if (!cocktail) {
-		return <div className="loading">Loading...</div>; // Display a loading indicator while fetching data
+		return null; // Display a loading indicator while fetching data
 	}
 
 	const {

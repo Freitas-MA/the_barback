@@ -25,7 +25,7 @@ export default async function UserAppSidebar({
 		console.log("Home", error);
 	}
 
-	return loggedIn ? (
+	return (
 		<div
 			className={cn(
 				"pb-12 max-w-[300px] minHeightSidebar",
@@ -198,5 +198,5 @@ export default async function UserAppSidebar({
 				</div>
 			</div>
 		</div>
-	) : null;
+	);
 }
