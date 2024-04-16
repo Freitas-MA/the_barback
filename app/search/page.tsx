@@ -5,7 +5,7 @@ import SearchResults from "@/app/search/[id]/page";
 export default async function Search() {
 	return (
 		<div className="flex flex-col md:flex-row">
-			<SearchResults />
+			<p>Sorry, repeat you search with another term!</p>
 		</div>
 	);
 }

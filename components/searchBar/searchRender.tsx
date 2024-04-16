@@ -6,7 +6,7 @@ import {
 	searchResultsAtom,
 	localUrlAtom,
 } from "@/components/atoms";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import CardCocktail from "../common/card";
 import type { FormattedDrink } from "@/types";
 
@@ -30,6 +30,7 @@ export default async function SearchResults() {
 				{cocktails ? (
 					<section className={className}>
 						{cocktails.map((cocktail) => (
+							// biome-ignore lint/correctness/useJsxKeyInIterable: <the key is used inside of the component using the cocktail props.>
 							<CardCocktail {...cocktail} />
 						))}
 					</section>

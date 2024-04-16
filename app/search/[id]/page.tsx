@@ -17,13 +17,9 @@ export default async function SearchResults() {
 			const fetchCocktails = async () => {
 				try {
 					const response = await searchCocktailConstructor(idString);
-					setCocktails( response || [])
+					setCocktails(response || []);
 				} catch (error) {
 					console.error("Error fetching cocktails:", error);
-					throw new Error(
-						"Sorry, something goes worrong, try again later",
-						error,
-					);
 				}
 			};
 			fetchCocktails();
