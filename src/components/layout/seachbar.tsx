@@ -53,7 +53,7 @@ export default function SearchBar() {
 	};
 
 	return (
-		<div className="flex items-center justify-start px-2">
+		<div className="flex items-center justify-start min-w-[50%]">
 			<input
 				className="bg bg-white-400 border border-gray-200 z-10 w-full rounded-sm shadow-lg m-1 px-2 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
 				type="text"
