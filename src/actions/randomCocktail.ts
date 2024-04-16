@@ -1,4 +1,4 @@
-import type { Drink, FormattedDrink } from "@/types";
+import type { Drink, FormattedDrink } from "../../types";
 import { fetchCocktails, formatData } from "./helpers";
 
 export const cocktailsConstructor = async (windowLocation: string) => {

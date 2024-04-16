@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "#/lib/utils";
 import { Button } from "@/components/ui/button";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
@@ -26,12 +26,7 @@ export default async function UserAppSidebar({
 	}
 
 	return (
-		<div
-			className={cn(
-				"pb-12 max-w-[300px] minHeightSidebar",
-				classNameProp,
-			)}
-		>
+		<div className={cn("pb-12 max-w-[300px] minHeightSidebar", classNameProp)}>
 			<div className="space-y-4 py-4">
 				<div className="px-3 py-2">
 					<h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">

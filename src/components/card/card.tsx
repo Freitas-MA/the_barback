@@ -1,5 +1,5 @@
 import React from "react";
-import type { FormattedDrink } from "@/types";
+import type { FormattedDrink } from "../../../types";
 import Link from "next/link";
 
 export default async function CardCocktail(cocktail: FormattedDrink) {

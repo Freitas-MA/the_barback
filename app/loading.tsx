@@ -1,4 +1,4 @@
-import { CardLoader } from "@/components/common/cardLoader";
+import { CardLoader } from "@/components/card/cardLoader";
 
 export default function loading() {
 	return (

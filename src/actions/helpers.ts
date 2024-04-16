@@ -1,4 +1,4 @@
-import type { Drink, FormattedDrink } from "@/types";
+import type { Drink, FormattedDrink } from "#/types";
 
 export const formatData = async (data: { drinks: Drink[] }): Promise<{
     data: FormattedDrink;

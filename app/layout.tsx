@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import UserAppHeader from "@/components/layout-components/user-app-header";
-import UserAppSidebar from "@/components/layout-components/user-app-sidebar";
+import UserAppHeader from "@/components/layout/header";
+import UserAppSidebar from "@/components/layout/sidebar";
 import { Analytics } from "@vercel/analytics/react";
-import AppSignature from "@/components/layout-components/app.signature";
-import CookiesNotice from "@/components/auth/cookies";
+import AppSignature from "@/components/layout/footer";
+import CookiesNotice from "@/components/layout/cookies";
 import dynamic from "next/dynamic";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 const Provider = dynamic(() => import("@/components/provider"), {
 	ssr: false,
 });
-const SearchBar = dynamic(() => import("@/components/searchBar/seachBar"), {
+const SearchBar = dynamic(() => import("@/components/layout/seachbar"), {
 	ssr: false,
 });
 

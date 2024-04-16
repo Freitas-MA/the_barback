@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import CardCocktail from "@/components/common/card";
-import type { FormattedDrink } from "@/types";
-import { searchCocktailConstructor } from "@/components/handlers/functions";
+import CardCocktail from "@/components/card/card";
+import type { FormattedDrink } from "#/types";
+import { searchCocktailConstructor } from "@/actions/searchCocktail";
 
 export default async function SearchResults() {
 	const { id } = useParams();
@@ -41,6 +41,7 @@ export default async function SearchResults() {
 				{cocktails ? (
 					<section className={className}>
 						{cocktails.map((cocktail) => (
+							// biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
 							<CardCocktail {...cocktail} />
 						))}
 					</section>

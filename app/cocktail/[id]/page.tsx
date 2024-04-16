@@ -1,9 +1,9 @@
 "use client"; // Add this line at the beginning
 
-import type { FormattedDrink } from "@/types";
+import type { FormattedDrink } from "#/types";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { fetchCocktailRecipe } from "@/components/handlers/functions";
+import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
 
 export default function CocktailDetails() {
 	const { id } = useParams();
@@ -47,8 +47,8 @@ export default function CocktailDetails() {
 	);
 
 	return (
-		<div className="cocktail-details mt-5">
-			<div className="flex flex-row gap-8 m-4">
+		<div className="cocktail-details my-5">
+			<div className="flex flex-col md:flex-row gap-8 m-4">
 				<img
 					src={strDrinkThumb}
 					alt={strDrink}

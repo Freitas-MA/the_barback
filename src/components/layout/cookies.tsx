@@ -6,7 +6,7 @@ interface CookiesNoticeProps {
 }
 
 const CookiesNotice: React.FC<CookiesNoticeProps> = ({ className }) => {
-	const [acceptedCookies, setAcceptedCookies] = useState<boolean>(true);
+	const [acceptedCookies, setAcceptedCookies] = useState<boolean>(false);
 
 	useEffect(() => {
 		const cookiesAccepted = document.cookie.includes("cookiesAccepted=true");
