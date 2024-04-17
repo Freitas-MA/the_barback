@@ -18,7 +18,7 @@ export default async function Search() {
 
 	if (!searchHistory) {
 		return (
-			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center border border-black mt-5">
+			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center mt-5">
 				<h2 className="text-4xl font-bold">Sorry, no cocktail found here.</h2>
 				<p>Please, search another one on the search bar.</p>
 			</div>
@@ -26,12 +26,12 @@ export default async function Search() {
 	}
 	return (
 		<>
-			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center border border-black mt-5">
+			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center mt-5">
 				<h2 className="text-4xl font-bold">
 					Take a look on your last searches!
 				</h2>
 				<ul className="flex flex-row mt-5 gap-2">
-					{searchHistory.map((search, index) => {
+					{searchHistory.reverse().map((search, index) => {
 						return (
 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 							<li key={index} className="flex flex-row flex-wrap gap-4">

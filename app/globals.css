@@ -76,9 +76,9 @@
 }
 
 .minHeightSidebar {
-  min-height: calc(100vh - 96px);
+  min-height: calc(100vh - 100px);
 }
 
 .minHeightHome {
-  min-height: calc(100vh - 48px);
+  min-height: calc(100vh - 52px);
 }

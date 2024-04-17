@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 interface CookiesNoticeProps {
@@ -23,24 +24,16 @@ const CookiesNotice: React.FC<CookiesNoticeProps> = ({ className }) => {
 	return (
 		<>
 			{!acceptedCookies && (
-				<div
-					className={`${className} cookieCard flex flex-col items-start justify-center gap-4 p-4 relative overflow-hidden`}
-				>
-					<div className="absolute right-[-25%] top-[-25%] z-1 w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-purple-400" />
-					<p className="cookieHeading text-xl font-bold text-white z-2">
-						Cookies.
-					</p>
-					<p className="cookieDescription text-base text-white z-2">
+				<div className={`${className}`}>
+					<p className="cookieHeading text-xl font-bold z-2">Cookies.</p>
+					<p className="cookieDescription flex flex-col text-base z-2">
 						This website uses cookies for a better user experience. By
 						continuing to use this site, you accept the use of cookies.{" "}
-						{/* biome-ignore lint/a11y/useValidAnchor: <explanation> */}
-						<a href="#" className="text-white">
-							What for?
-						</a>
+						<Link className="text-blue-400" href="/privacy-policy">Learn more</Link>
 					</p>
 					<button
 						type="button"
-						className="acceptButton px-4 py-2 text-white font-bold bg-purple-600 hover:bg-purple-700 rounded transition duration-200 ease-in-out z-2"
+						className="acceptButton w-32 mt-4 px-4 py-2 font-bold shadow-md bg-white hover:bg-slate-200 rounded transition duration-200 ease-in-out z-2"
 						onClick={handleAcceptCookies}
 					>
 						Ok!
