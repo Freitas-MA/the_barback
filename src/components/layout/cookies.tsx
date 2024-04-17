@@ -11,8 +11,8 @@ const CookiesNotice: React.FC<CookiesNoticeProps> = ({ className }) => {
 
 	useEffect(() => {
 		const cookiesAccepted = document.cookie.includes("cookiesAccepted=true");
-		if (!cookiesAccepted) {
-			setAcceptedCookies(false);
+		if (cookiesAccepted) {
+			setAcceptedCookies(true);
 		}
 	}, []);
 

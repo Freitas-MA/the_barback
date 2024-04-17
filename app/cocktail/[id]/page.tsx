@@ -2,7 +2,7 @@
 
 import type { FormattedDrink } from "#/types";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
 
 export default function CocktailDetails() {
@@ -46,6 +46,8 @@ export default function CocktailDetails() {
 		),
 	);
 
+	const paragraphs = instructions.split(/(?<=\.) /);
+
 	return (
 		<div className="cocktail-details my-5">
 			<div className="flex flex-col md:flex-row gap-8 m-4">
@@ -55,7 +57,7 @@ export default function CocktailDetails() {
 					className="w-80 rounded-md shadow-lg"
 				/>
 				<div className="flex flex-col gap-4">
-					<h2 className="text-4xl font-bold">{strDrink}</h2>
+					<h2 className="text-4xl font-bold tracking-wider">{strDrink}</h2>
 					<p>
 						<b>Category:</b> {strCategory}
 					</p>
@@ -63,14 +65,23 @@ export default function CocktailDetails() {
 						<b>Alcoholic:</b> {strAlcoholic}
 					</p>
 					<div className="mt-4 gap-4">
-						<h3 className="text-2xl font-bold">Ingredients:</h3>
-						<ul className="list-disc pl-4">{recipeIngredients}</ul>
+						<h3 className="text-2xl font-bold tracking-wider">Ingredients:</h3>
+						<ul className="list-disc pl-4 flex flex-col">
+							{recipeIngredients}
+						</ul>
 					</div>
 				</div>
 			</div>
 			<div className="px-8">
-				<h3 className="text-2xl font-bold">Instructions:</h3>
-				<p>{instructions}</p>
+				<h3 className="text-2xl font-bold tracking-wider">Instructions:</h3>
+				<div className="flex flex-col mt-2">
+					{paragraphs.map((paragraph, index) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<p key={index} className="capitalize-first leading-relaxed">
+							{paragraph}
+						</p>
+					))}
+				</div>
 			</div>
 		</div>
 	);

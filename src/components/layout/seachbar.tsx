@@ -2,9 +2,8 @@
 import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 import { string } from "zod";
-
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState("");
@@ -13,28 +12,30 @@ export default function SearchBar() {
 
 	useEffect(() => {
 		const cookie = document.cookie
-		  .split('; ')
-		  .find(row => row.startsWith('SearchHistory'))
-		  ?.split('=')[1];
+			.split("; ")
+			.find((row) => row.startsWith("SearchHistory"))
+			?.split("=")[1];
 		const history = cookie ? JSON.parse(cookie) : [];
 		setSearchHistory(history);
-	  }, []);
+	}, []);
 
-	  const addSearchTerm = (term: string) => {
+	const addSearchTerm = (term: string) => {
 		let newHistory = [...searchHistory, term];
-	
+
 		// Limitar o tamanho do array para 10 elementos
 		if (newHistory.length > 10) {
-		  newHistory = newHistory.slice(1);
+			newHistory = newHistory.slice(1);
 		}
-	
+
 		setSearchHistory(newHistory);
-	
+
 		// Ajustar a data de expiração para 7 dias a partir do dia atual
 		const date = new Date();
 		date.setDate(date.getDate() + 7);
-		document.cookie = `SearchHistory=${JSON.stringify(newHistory)}; expires=${date.toUTCString()}`;
-	  }
+		document.cookie = `SearchHistory=${JSON.stringify(
+			newHistory,
+		)}; expires=${date.toUTCString()}`;
+	};
 
 	const handleSearch = (event: { preventDefault: () => void }) => {
 		event.preventDefault();
@@ -53,7 +54,7 @@ export default function SearchBar() {
 	};
 
 	return (
-		<div className="flex items-center justify-start min-w-[50%]">
+		<div className="flex items-center justify-start md:min-w-[50%] max-w-[50%] focus:max-w-[100%] focus:min-w-[100%]">
 			<input
 				className="bg bg-white-400 border border-gray-200 z-10 w-full rounded-sm shadow-lg m-1 px-2 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-transparent"
 				type="text"

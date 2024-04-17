@@ -9,6 +9,5 @@ export const fetchCocktailRecipe = async (id: string) => {
 	);
 	const data = await response.json();
 	const formattedData = await formatData(data);
-	console.log(formattedData);
 	return formattedData;
 };

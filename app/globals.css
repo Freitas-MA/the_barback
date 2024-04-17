@@ -82,3 +82,11 @@
 .minHeightHome {
   min-height: calc(100vh - 52px);
 }
+
+.capitalize-first {
+  text-transform: lowercase;
+}
+
+.capitalize-first:first-letter {
+  text-transform: uppercase;
+}
