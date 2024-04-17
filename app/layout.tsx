@@ -41,7 +41,7 @@ export default function RootLayout({
 			>
 				<Provider>
 					<UserAppHeader />
-					<div className=" w-screen flex pt-12 pr-4">
+					<div className=" w-screen flex pt-12 pr-4 minHeightSidebar">
 						<UserAppSidebar className="hidden md:block z-10" />
 						{children}
 					</div>
