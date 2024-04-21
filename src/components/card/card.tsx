@@ -1,7 +1,6 @@
 import React from "react";
 import type { FormattedDrink } from "#/types";
 import Link from "next/link";
-import { FaRegStar } from "react-icons/fa6";
 
 export default async function CardCocktail(cocktail: FormattedDrink) {
 	const cardStyle =
@@ -25,9 +24,6 @@ export default async function CardCocktail(cocktail: FormattedDrink) {
 		<>
 			<Link href={{ pathname: `/cocktail/${cocktail.idDrink}` }}>
 				<div className={cardStyle} key={cocktail.idDrink}>
-					{/* <button type="button" onClick={handleClick()} className="absolute right-2 top-2 z-50">
-						<FaRegStar />
-					</button> */}
 					<div className="flex flex-col items-center justify-center">
 						<h1>{cocktail.strDrink}</h1>
 						<img

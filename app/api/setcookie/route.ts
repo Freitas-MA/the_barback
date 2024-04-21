@@ -16,7 +16,7 @@ export default async function setCookie(req: NextApiRequest, res: NextApiRespons
   res.setHeader(
     'Set-Cookie',
     serialize('favoriteCocktails', JSON.stringify(favoriteCocktails), {
-      maxAge: 60 * 60 * 24 * 7, // 1 week
+      maxAge: 60 * 60 * 24 * 365, // 1 Year
       path: '/',
     })
   );

@@ -1,17 +1,16 @@
-import type { useRouter } from 'next/navigation';
 interface FileObject {
-    name: string
-    bucket_id: string
-    owner: string
-    id: string
-    updated_at: string
-    created_at: string
-    last_accessed_at: string
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-    metadata: Record<string, any>
+	name: string;
+	bucket_id: string;
+	owner: string;
+	id: string;
+	updated_at: string;
+	created_at: string;
+	last_accessed_at: string;
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+	metadata: Record<string, any>;
 }
 
-export type RestoredImage = FileObject
+export type RestoredImage = FileObject;
 
 export interface Drink {
 	strDrink: string;
@@ -61,22 +60,3 @@ export interface FormattedDrink {
 	strDrinkThumb: string;
 	recipe: { [ingredient: string]: string };
 }
-// // Create the AppRouterInstance type// types.ts or any other appropriate location
-
-
-declare module 'next/router' {
-  interface Router {
-    events: {
-      on(event: 'routeChangeStart', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
-      on(event: 'routeChangeComplete', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
-      on(event: 'routeChangeError', callback: (err: any, url: string) => void): void;
-      on(event: 'beforeHistoryChange', callback: (url: string) => void): void;
-      off(event: 'routeChangeStart', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
-      off(event: 'routeChangeComplete', callback: (url: string, { shallow }: { shallow: boolean }) => void): void;
-      off(event: 'routeChangeError', callback: (err: any, url: string) => void): void;
-      off(event: 'beforeHistoryChange', callback: (url: string) => void): void;
-    };
-  }
-}
-
-export type AppRouterInstance = Router;

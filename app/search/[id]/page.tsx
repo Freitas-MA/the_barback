@@ -1,30 +1,35 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import CardCocktail from "@/components/card/card";
 import type { FormattedDrink } from "#/types";
 import { searchCocktailConstructor } from "@/actions/searchCocktail";
 
-export default async function SearchResults() {
-	const { id } = useParams();
-	const idString = Array.isArray(id) ? id[0] : id;
-	const [cocktails, setCocktails] = useState<FormattedDrink[]>([]);
+export default async function SearchResults({
+	params,
+}: { params: { id: string } }) {
+	const idString = params.id;
 	const className =
 		"flex flex-row flex-wrap w-full justify-center items-center mt-5";
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	useEffect(() => {
-		if (idString) {
-			const fetchCocktails = async () => {
-				try {
-					const response = await searchCocktailConstructor(idString);
-					setCocktails(response || []);
-				} catch (error) {
-					console.error("Error fetching cocktails:", error);
-				}
-			};
-			fetchCocktails();
+	let cocktails: FormattedDrink[] = [];
+
+		try {
+			cocktails = await searchCocktailConstructor(idString);
+			console.log("server fecth success");
+		} catch (error) {
+			console.error("Error fetching cocktails:", error);
 		}
-	}, []);
+
+	// useEffect(() => {
+	// 	if (idString) {
+	// 		const fetchCocktails = async () => {
+	// 			try {
+	// 				const response = await searchCocktailConstructor(idString);
+	// 				setCocktails(response || []);
+	// 			} catch (error) {
+	// 				console.error("Error fetching cocktails:", error);
+	// 			}
+	// 		};
+	// 		fetchCocktails();
+	// 	}
+	// }, []);
 
 	if (!idString) {
 		return (
@@ -50,3 +55,15 @@ export default async function SearchResults() {
 		</>
 	);
 }
+
+// export default function SearchResults({
+// 	params,
+// }: { params: { id: string } }) {
+// 	const cocktail = params.id;
+// 	console.log(cocktail);
+// 	return (
+// 		<div className="w-full h-screen flex items-center justify-center">
+// 			<h1>{cocktail ? `Cocktail: ${cocktail}` : "No cocktail found here."}</h1>
+// 		</div>
+// 	);
+// }

@@ -1,29 +1,10 @@
-"use client"; // Add this line at the beginning
-
 import type { FormattedDrink } from "#/types";
-import { useParams } from "next/navigation";
-import { Fragment, useEffect, useState } from "react";
 import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
 
-export default function CocktailDetails() {
-	const { id } = useParams();
-	const idString = Array.isArray(id) ? id[0] : id;
-	const [cocktail, setCocktail] = useState<FormattedDrink | null>(null); // Handle potential missing data
+export default async function CocktailDetails( { params }: { params: { id: string } }) {
 
-	useEffect(() => {
-		const fetchCocktail = async () => {
-			try {
-				const response = await fetchCocktailRecipe(idString);
-				setCocktail(response.data);
-			} catch (error) {
-				console.error("Error fetching cocktail recipe:", error);
-				// Handle the error gracefully, e.g., display an error message
-			}
-		};
-
-		fetchCocktail();
-	}, [idString]);
-
+	const idString = params.id.toString();
+	const cocktail: FormattedDrink = (await fetchCocktailRecipe(idString)).data;
 	if (!cocktail) {
 		return null; // Display a loading indicator while fetching data
 	}
@@ -46,7 +27,8 @@ export default function CocktailDetails() {
 		),
 	);
 
-	const paragraphs = instructions.split(/(?<=\.) /);
+	const paragraphs = instructions.split(/(?<=\.)\s+/);
+
 
 	return (
 		<div className="cocktail-details my-5">

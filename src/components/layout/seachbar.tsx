@@ -2,8 +2,6 @@
 import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { string } from "zod";
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState("");
