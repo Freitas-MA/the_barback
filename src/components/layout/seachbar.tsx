@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { IoMdSearch } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { checkForCookiesAsArray } from "@/actions/checkForCookiesArray";
 
 export default function SearchBar() {
 	const [searchTerm, setSearchTerm] = useState("");
@@ -9,12 +10,13 @@ export default function SearchBar() {
 	const router = useRouter();
 
 	useEffect(() => {
-		const cookie = document.cookie
-			.split("; ")
-			.find((row) => row.startsWith("SearchHistory"))
-			?.split("=")[1];
-		const history = cookie ? JSON.parse(cookie) : [];
-		setSearchHistory(history);
+		
+			checkForCookiesAsArray("SearchHistory").then((history: []) => {
+				setSearchHistory(history);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}, []);
 
 	const addSearchTerm = (term: string) => {
@@ -73,7 +75,7 @@ export default function SearchBar() {
 				<button
 					type="submit"
 					className={`flex justify-center h-6 items-center px-1 ${
-						searchTerm ? "opacity-100" : "opacity-0 -z-10"
+						searchTerm ? "opacity-100 z-50" : "opacity-0 -z-50"
 					}`}
 					onClick={handleClearSearch}
 				>
