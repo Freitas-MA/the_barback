@@ -1,5 +1,6 @@
 import type { FormattedDrink } from "#/types";
 import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
+import { CookieButton } from "@/components/smartComponents/cookieButton";
 
 export default async function CocktailDetails( { params }: { params: { id: string } }) {
 
@@ -33,6 +34,7 @@ export default async function CocktailDetails( { params }: { params: { id: strin
 	return (
 		<div className="cocktail-details my-5">
 			<div className="flex flex-col md:flex-row gap-8 m-4">
+				<CookieButton name="favorite" value={idDrink} />
 				<img
 					src={strDrinkThumb}
 					alt={strDrink}

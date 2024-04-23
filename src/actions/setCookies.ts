@@ -1,8 +1,5 @@
 "use server"
-interface SetCookieProps {
-    name: string;
-    value: string;
-}
+import type { SetCookieProps } from "#/types";
 export const setCookieFavorite = async ({name, value}: SetCookieProps) => {
     const response = await fetch("/api/setCookie", {
         method: "POST",

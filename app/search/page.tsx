@@ -1,20 +1,11 @@
-"use client";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { cookies } from "next/headers";
 
 export default async function Search() {
-	const [searchHistory, setSearchHistory] = useState([] || null);
+	const searchCookie = cookies().getAll("SearchHistory");
+	const searchHistory = searchCookie ? searchCookie[0] : null;
 
-	useEffect(() => {
-		const cookie = document.cookie
-			.split("; ")
-			.find((row) => row.startsWith("SearchHistory"))
-			?.split("=")[1];
-		const history = cookie ? JSON.parse(cookie) : [];
-		setSearchHistory(history);
-	}, []);
-
-	console.log(searchHistory);
+	const value = searchHistory ? JSON.parse(searchHistory.value) : null;
 
 	if (!searchHistory) {
 		return (
@@ -31,7 +22,7 @@ export default async function Search() {
 					Take a look on your last searches!
 				</h2>
 				<ul className="flex flex-row mt-5 gap-2">
-					{searchHistory.reverse().map((search, index) => {
+					{value.map((search: string, index: number) => {
 						return (
 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 							<li key={index} className="flex flex-row flex-wrap gap-4">

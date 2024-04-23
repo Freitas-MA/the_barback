@@ -60,3 +60,8 @@ export interface FormattedDrink {
 	strDrinkThumb: string;
 	recipe: { [ingredient: string]: string };
 }
+
+export interface SetCookieProps {
+    name: string;
+    value: string;
+}
