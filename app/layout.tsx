@@ -25,9 +25,7 @@ export const metadata: Metadata = {
 const Provider = dynamic(() => import("@/components/provider"), {
 	ssr: false,
 });
-const SearchBar = dynamic(() => import("@/components/layout/seachbar"), {
-	ssr: false,
-});
+
 
 export default function RootLayout({
 	children,

@@ -9,14 +9,11 @@ interface CookiesNoticeProps {
 const CookiesNotice: React.FC<CookiesNoticeProps> = async ({ className }) => {
 	const hasAcceptedCookies = cookies().has("cookiesAccepted");
 
-	console.log("Cookie", hasAcceptedCookies);
-
 	const handleAcceptCookies = async () => {
 		"use server";
 		cookies().set("cookiesAccepted", "false");
 		revalidatePath("/");
 	};
-	//
 	return (
 		<>
 			{!hasAcceptedCookies && (
