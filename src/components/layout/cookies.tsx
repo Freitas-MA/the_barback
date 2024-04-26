@@ -14,8 +14,7 @@ const CookiesNotice: React.FC<CookiesNoticeProps> = async ({ className }) => {
 	const handleAcceptCookies = async () => {
 		"use server";
 		cookies().set("cookiesAccepted", "false");
-
-		console.log("Button clicked");
+		revalidatePath("/");
 	};
 	//
 	return (

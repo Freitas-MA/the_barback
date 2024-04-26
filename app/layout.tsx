@@ -42,7 +42,7 @@ export default function RootLayout({
 				<Provider>
 					<UserAppHeader />
 					<div className=" w-screen flex pt-12 pr-4 minHeightSidebar">
-						<UserAppSidebar className="hidden md:block z-10" />
+						<UserAppSidebar/>
 						{children}
 					</div>
 					<CookiesNotice className="absolute bottom-[3rem] inset-x-0 min-h-32 p-4 bg-zinc-300 text-black text-center bg-opacity-50 backdrop-blur-sm backdrop-filter z-50" />
