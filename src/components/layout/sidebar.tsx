@@ -12,6 +12,8 @@ import { FaRobot } from "react-icons/fa6";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoBusiness } from "react-icons/io5";
 import { headers } from "next/headers";
+import dynamic from "next/dynamic";
+import ClientPageChecker from "@/components/layout/clientPageChecker";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
@@ -20,8 +22,8 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 export default async function UserAppSidebar({
 	className: classNameProp,
 }: SidebarProps) {
-	const header = headers();
-	const pathName = header.get("pathname");
+	const header = headers().get("pathname");
+	const pathName = header;
 	console.log("path", pathName);
 
 	let loggedIn = false;
@@ -38,80 +40,96 @@ export default async function UserAppSidebar({
 		console.log("Home", error);
 	}
 
+	const ClientButtonNavegation = dynamic(
+		() => import("@/components/layout/clientPageChecker"),
+		{
+			ssr: false,
+		},
+	);
+
 	return (
-		<nav className={cn("pb-12 max-w-[300px] minHeightSidebar", classNameProp)}>
-			<div className="space-y-4 py-4">
-				<div className="px-3 py-2">
-					<h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+		<nav className="md:flex md:max-w-[300px] md:justify-start md:items-start md:relative md:bg-slate-100 fixed bottom-0 left-0 z-50 shadow-lg flex-row items-center justify-between w-screen bg-slate-300 bg-opacity-90">
+			<div className="flex flex-row items-center justify-center space-y-4 md:py-4 md:flex-col md:items-start md:justify-start md:w-full">
+				<div className="md:px-3 md:py-2">
+					<h2 className="hidden md:block mb-2 px-4 text-lg font-semibold tracking-tight">
 						Discover
 					</h2>
-					<div className="space-y-1">
-						<Link href="/">
-							<Button variant="secondary" className="w-full justify-start">
-								<FaHome className="mr-2" />
-								Public Collection
-							</Button>
-						</Link>
-						<Link href="/search">
-							<Button
-								variant="ghost"
-								disabled={false}
-								className="w-full justify-start"
-							>
-								<IoMdSearch className="mr-2" />
-								Search Collection
-							</Button>
-						</Link>
-						<Link href={"/favorits"}>
-							<Button
-								variant="ghost"
-								disabled={true}
-								className="w-full justify-start"
-							>
-								<FaStar className="mr-2" />
-								Favorits
-							</Button>
-						</Link>
-						<Link href={"/private"} aria-disabled="true">
-							<Button
-								disabled={true}
-								variant="ghost"
-								className="w-full justify-start"
-							>
-								<BsIncognito className="mr-2" />
-								Private
-							</Button>
-						</Link>
+					<div className="md:flex-col md:space-y-1 md:w-full md:text-center md:items-start flex flex-row items-center justify-between w-screen px-10">
+						<ClientButtonNavegation pathHref="/" title="Home" disabled={false}>
+							<FaHome className="md:mr-2" />
+						</ClientButtonNavegation>
+						<ClientButtonNavegation
+							pathHref="/search"
+							title="Search's"
+							disabled={false}
+						>
+							<IoMdSearch className="md:mr-2" />{" "}
+						</ClientButtonNavegation>
+						<ClientButtonNavegation
+							pathHref="/favorits"
+							title="Favorits"
+							disabled={true}
+						>
+							<FaStar className="md:mr-2" />
+						</ClientButtonNavegation>
+						<ClientButtonNavegation
+							pathHref="/private"
+							title="Private"
+							disabled={true}
+						>
+							<BsIncognito className="md:mr-2" />
+						</ClientButtonNavegation>
 					</div>
 				</div>
-				<div className="px-3 py-2">
+				<div className="hidden md:block px-3 py-2">
 					<h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
-						Discover the world
+						<p className="hidden md:block">Discover the world</p>
 					</h2>
-					<div className="space-y-1">
+					<div className="hidden md:flex-col md:space-y-1 md:w-full md:text-center md:items-start md:flex flex-row items-center justify-between w-screen px-10">
+						<ClientButtonNavegation
+							pathHref="/favorits"
+							title="Favorits"
+							disabled={true}
+						>
+							<FaRegNewspaper className="md:mr-2" />
+						</ClientButtonNavegation>
+						<ClientButtonNavegation
+							pathHref="/private"
+							title="Private"
+							disabled={true}
+						>
+							<IoBusiness className="md:mr-2" />
+						</ClientButtonNavegation>
+						<ClientButtonNavegation
+							pathHref="/private"
+							title="Business"
+							disabled={true}
+						>
+							<IoBusiness className="md:mr-2" />
+						</ClientButtonNavegation>
 						<Button
 							variant="ghost"
 							disabled={true}
-							className="w-full justify-start"
+							className="w-full justify-center"
 						>
-							<FaRobot className="mr-2" />
-							<h3>AI Cocktails</h3>
+							<FaRobot className="md:mr-2" />
+							<p className="hidden md:block">AI Cocktails</p>
 						</Button>
 						<Button
 							variant="ghost"
 							disabled={true}
-							className="w-full justify-start"
+							className="w-full justify-center"
 						>
-							<FaRegNewspaper className="mr-2" />
-							News
+							<FaRegNewspaper className="md:mr-2" />
+							<p className="hidden md:block">News</p>
 						</Button>
 						<Button
 							variant="ghost"
 							disabled={true}
-							className="w-full justify-start"
+							className="w-full justify-center"
 						>
-							<IoBusiness className="mr-2" />
-							Business
+							<IoBusiness className="md:mr-2" />
+							<p className="hidden md:block">Business</p>
 						</Button>
 					</div>
 				</div>

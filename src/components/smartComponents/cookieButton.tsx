@@ -10,13 +10,11 @@ interface CookieButtonProps {
 export const CookieButton: React.FC<CookieButtonProps> = ({ name, value }) => {
 	async function isFavorite() {
 		const cookie = await cookies().get("SearchHistory");
-		const valores = cookie.value;
+		const valores = cookie?.value;
 
 		if (valores?.includes("mojito")) {
 			return true;
-		} else {
-			return false;
-		}
+		} 
 	}
 
 	isFavorite().then((res) => {
