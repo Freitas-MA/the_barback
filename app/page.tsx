@@ -29,7 +29,7 @@ export default async function Home() {
 	const localUrl = process.env.NEXT_PUBLIC_BASE_URL;
 	const cocktails = await cocktailsConstructor(localUrl);
 	const className =
-		"flex flex-row flex-wrap w-full justify-center items-center mt-5";
+		"flex flex-row flex-wrap w-full justify-center items-start mt-5";
 
 	return (
 		<>

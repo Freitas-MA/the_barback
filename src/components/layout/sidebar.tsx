@@ -48,13 +48,13 @@ export default async function UserAppSidebar({
 	);
 
 	return (
-		<nav className="md:flex md:max-w-[300px] md:justify-start md:items-start md:relative md:bg-slate-100 fixed bottom-0 left-0 z-50 shadow-lg flex-row items-center justify-between w-screen bg-slate-300 bg-opacity-90">
+		<nav className="md:flex md:max-w-[300px] md:min-h-[89vh] md:justify-start md:items-start md:relative md:bg-slate-100 fixed bottom-0 left-0 z-50 shadow-lg flex-row items-center justify-between w-screen bg-slate-300 bg-opacity-90">
 			<div className="flex flex-row items-center justify-center space-y-4 md:py-4 md:flex-col md:items-start md:justify-start md:w-full">
 				<div className="md:px-3 md:py-2">
 					<h2 className="hidden md:block mb-2 px-4 text-lg font-semibold tracking-tight">
 						Discover
 					</h2>
-					<div className="md:flex-col md:space-y-1 md:w-full md:text-center md:items-start flex flex-row items-center justify-between w-screen px-10">
+					<div className="md:flex-col md:space-y-1 md:w-full md:text-center md:items-start md:px-0 flex flex-row items-center justify-between w-screen px-10">
 						<ClientButtonNavegation pathHref="/" title="Home" disabled={false}>
 							<FaHome className="md:mr-2" />
 						</ClientButtonNavegation>
@@ -85,52 +85,28 @@ export default async function UserAppSidebar({
 					<h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
 						<p className="hidden md:block">Discover the world</p>
 					</h2>
-					<div className="hidden md:flex-col md:space-y-1 md:w-full md:text-center md:items-start md:flex flex-row items-center justify-between w-screen px-10">
+					<div className="hidden md:flex-col md:space-y-1 md:w-full md:text-center md:items-start md:flex md:px-0 flex-row items-center justify-between w-screen px-10">
 						<ClientButtonNavegation
-							pathHref="/favorits"
-							title="Favorits"
+							pathHref="/barback"
+							title="The Barback"
 							disabled={true}
 						>
 							<FaRegNewspaper className="md:mr-2" />
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
 							pathHref="/private"
-							title="Private"
+							title="News"
 							disabled={true}
 						>
 							<IoBusiness className="md:mr-2" />
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
-							pathHref="/private"
+							pathHref="/business"
 							title="Business"
 							disabled={true}
 						>
 							<IoBusiness className="md:mr-2" />
 						</ClientButtonNavegation>
-						<Button
-							variant="ghost"
-							disabled={true}
-							className="w-full justify-center"
-						>
-							<FaRobot className="md:mr-2" />
-							<p className="hidden md:block">AI Cocktails</p>
-						</Button>
-						<Button
-							variant="ghost"
-							disabled={true}
-							className="w-full justify-center"
-						>
-							<FaRegNewspaper className="md:mr-2" />
-							<p className="hidden md:block">News</p>
-						</Button>
-						<Button
-							variant="ghost"
-							disabled={true}
-							className="w-full justify-center"
-						>
-							<IoBusiness className="md:mr-2" />
-							<p className="hidden md:block">Business</p>
-						</Button>
 					</div>
 				</div>
 			</div>
