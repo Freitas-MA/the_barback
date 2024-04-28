@@ -90,3 +90,10 @@
 .capitalize-first:first-letter {
   text-transform: uppercase;
 }
+
+.path {
+    fill: none;
+    stroke: black;
+    stroke-width: 2;
+  }
+  

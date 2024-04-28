@@ -48,7 +48,7 @@ export default async function UserAppSidebar({
 	);
 
 	return (
-		<nav className="md:flex md:max-w-[300px] md:min-h-[89vh] md:justify-start md:items-start md:relative md:bg-slate-100 fixed bottom-0 left-0 z-50 shadow-lg flex-row items-center justify-between w-screen bg-slate-300 bg-opacity-90">
+		<nav className="md:flex md:max-w-[300px] md:min-h-[89vh] md:justify-start md:items-start md:relative md:bg-slate-100 fixed bottom-0 left-0 z-40 shadow-lg flex-row items-center justify-between w-screen bg-slate-300 bg-opacity-90">
 			<div className="flex flex-row items-center justify-center space-y-4 md:py-4 md:flex-col md:items-start md:justify-start md:w-full">
 				<div className="md:px-3 md:py-2">
 					<h2 className="hidden md:block mb-2 px-4 text-lg font-semibold tracking-tight">

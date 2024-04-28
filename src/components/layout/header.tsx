@@ -9,7 +9,7 @@ export default function UserAppHeader() {
 
 	return (
 		<header>
-			<nav className="flex justify-between fixed bg-slate-100 top-0 items-center w-screen h-12 px-4 py-2 shadow-md z-50">
+			<nav className="flex justify-between fixed bg-slate-100 top-0 items-center w-screen h-12 px-4 py-2 shadow-md z-40">
 				<Link href={"/"}>
 					<span className="font-extrabold flex flex-row items-center justify-center">
 						<Image
