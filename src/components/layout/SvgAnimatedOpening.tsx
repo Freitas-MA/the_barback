@@ -15,11 +15,11 @@ function SvgAnimatedOpening(
 			svgPath.style.strokeDasharray = `${length}`;
 			svgPath.style.strokeDashoffset = `${length}`;
 			svgPath.getBoundingClientRect(); // Force reflow to make the path invisible before the animation starts
-			setTimeout(() => {
-				svgPath.style.transition = "stroke-dashoffset 4s ease-in-out";
-				svgPath.style.strokeDashoffset = "0";
-				setTimeout(() => setOpen(false), 5000); // Fecha o componente após 5 segundos de animação
-			}, 500); // Começa a animação após 0.5 segundos
+
+			svgPath.style.transition = "stroke-dashoffset 4s ease-in-out";
+			svgPath.style.strokeDashoffset = "0";
+			setTimeout(() => setOpen(false), 5000); // Fecha o componente após 5 segundos de animação
+			// Começa a animação após 0.5 segundos
 		});
 	}, []);
 
