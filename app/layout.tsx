@@ -27,9 +27,12 @@ const Provider = dynamic(() => import("@/components/provider"), {
 	ssr: false,
 });
 
-const SvgAnimatedOpening = dynamic(() => import("@/components/layout/SvgAnimatedOpening"), {
-	ssr: false,
-});
+const SvgAnimatedOpening = dynamic(
+	() => import("@/components/layout/SvgAnimatedOpening"),
+	{
+		ssr: false,
+	},
+);
 
 export default function RootLayout({
 	children,
@@ -48,19 +51,19 @@ export default function RootLayout({
 				className={`${
 					inter.className
 				} relative min-h-screen overflow-x-hidden ${
-					isCookieAccepted ? "overflow-y-auto" : "overflow-y-auto"
+					isCookieAccepted ? "overflow-y-auto" : "overflow-y-hidden"
 				}`}
 			>
 				<Provider>
 					<UserAppHeader />
-					<SvgAnimatedOpening />
+					{/* <SvgAnimatedOpening /> */}
 					<div className=" w-screen flex pt-12 pr-4 minHeightSidebar">
 						<UserAppSidebar />
 						{children}
 					</div>
 					<CookiesNotice
 						className={`${
-							isCookieAccepted ? acceptedCookiesClass : acceptedCookiesClass
+							isCookieAccepted ? acceptedCookiesClass : notAcceptedCookiesClass
 						}`}
 					/>
 					<AppSignature />

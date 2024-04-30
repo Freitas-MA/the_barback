@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -20,16 +21,21 @@ export default async function ClientButtonNavegation({
 	const pathName = usePathname();
 	// biome-ignore lint/suspicious/noDoubleEquals: <explanation>
 	const checkPage = pathName == pathHref;
+
+	const router = useRouter();
+
+	const handleClickPush = () => {
+		router.push(pathHref as string);
+	};
 	return (
 		<Button
 			variant={checkPage ? "outline" : "ghost"}
 			disabled={disabled as boolean}
-			className="max-w-full "
+			className="flex flex-row justify-normal w-full hover:bg-slate-200"
+			onClick={handleClickPush}
 		>
-			<Link href={pathHref as string} className="justify-center items-center flex flex-row">
-				{children}
-				<p className="hidden md:block">{title}</p>
-			</Link>
+			{children}
+			<p className="hidden md:block">{title}</p>
 		</Button>
 	);
 }
