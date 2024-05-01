@@ -57,9 +57,9 @@ export default async function UserAppSidebar({
 							<IoMdSearch className="md:mr-2" />{" "}
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
-							pathHref="/favorits"
+							pathHref="/favorites"
 							title="Favorits"
-							disabled={true}
+							disabled={false}
 						>
 							<FaStar className="md:mr-2" />
 						</ClientButtonNavegation>

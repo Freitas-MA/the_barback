@@ -17,20 +17,6 @@ export default async function SearchResults({
 			console.error("Error fetching cocktails:", error);
 		}
 
-	// useEffect(() => {
-	// 	if (idString) {
-	// 		const fetchCocktails = async () => {
-	// 			try {
-	// 				const response = await searchCocktailConstructor(idString);
-	// 				setCocktails(response || []);
-	// 			} catch (error) {
-	// 				console.error("Error fetching cocktails:", error);
-	// 			}
-	// 		};
-	// 		fetchCocktails();
-	// 	}
-	// }, []);
-
 	if (!idString) {
 		return (
 			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center border border-black mt-5">

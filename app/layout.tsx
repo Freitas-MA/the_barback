@@ -51,7 +51,7 @@ export default function RootLayout({
 				className={`${
 					inter.className
 				} relative min-h-screen overflow-x-hidden ${
-					isCookieAccepted ? "overflow-y-auto" : "overflow-y-hidden"
+					isCookieAccepted ? "overflow-y-auto" : "overflow-y-auto"
 				}`}
 			>
 				<Provider>
@@ -61,11 +61,11 @@ export default function RootLayout({
 						<UserAppSidebar />
 						{children}
 					</div>
-					<CookiesNotice
+					{/* <CookiesNotice
 						className={`${
-							isCookieAccepted ? acceptedCookiesClass : notAcceptedCookiesClass
+							isCookieAccepted ? acceptedCookiesClass : acceptedCookiesClass
 						}`}
-					/>
+					/> */}
 					<AppSignature />
 				</Provider>
 				<Analytics />
