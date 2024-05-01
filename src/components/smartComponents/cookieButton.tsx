@@ -1,7 +1,7 @@
 "use client";
 import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
-import { use, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 interface CookieButtonProps {
 	name: string;
@@ -19,8 +19,17 @@ export const CookieButton: React.FC<CookieButtonProps> = ({ value }) => {
 		return cookieRes;
 	};
 
-	const favoriteCookies = use(checkForCookiesAsArray("Favorite"));
+	const firstRender = async () => {
+		if (favoriteCookies.includes(value)) {
+			setIsFavorite(true);
+		}
+	}
 
+	const favoriteCookies = use(checkForCookiesAsArray("Favorite"));
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	useEffect(() => {
+		firstRender();
+	}, []);
 	console.log(favoriteCookies);
 
 	async function cookieToggle() {

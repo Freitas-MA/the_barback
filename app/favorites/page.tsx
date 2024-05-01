@@ -4,20 +4,18 @@ import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
 import CardCocktail from "@/components/card/card";
 
 export default async function page() {
-    const myCookies = cookies().get("Favorite")
-    const className =
-    "flex flex-row flex-wrap w-full justify-center items-center mt-5";
+    const myCookies = await JSON.parse(cookies().get("Favorite").value)
+    const className = "flex flex-row flex-wrap w-full justify-center items-center mt-5";
 
     console.log(myCookies)
 
     try {
-        const cocktailList: FormattedDrink[] = [];
+        let cocktailList: FormattedDrink[] = [];
         if (myCookies) {
           console.log("if aceito");
-          for (let i = 0; i < myCookies.length; i++) {
-            const cocktail: FormattedDrink = (await fetchCocktailRecipe(myCookies[i])).data;
-            cocktailList.push(cocktail);
-          }
+          const cocktailPromises = myCookies.map(id => fetchCocktailRecipe(id));
+          const cocktails = await Promise.all(cocktailPromises);
+          cocktailList = cocktails.map(cocktail => cocktail.data);
         }
         console.log(cocktailList);
         return (
