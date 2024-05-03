@@ -1,4 +1,3 @@
-
 import { searchCocktail, formatData } from "./helpers";
 
 export const searchCocktailConstructor = async (cocktail: string) => {
