@@ -26,12 +26,7 @@ const Provider = dynamic(() => import("@/components/provider"), {
 	ssr: false,
 });
 
-const SvgAnimatedOpening = dynamic(
-	() => import("@/components/layout/SvgAnimatedOpening"),
-	{
-		ssr: false,
-	},
-);
+
 
 export default function RootLayout({
 	children,
@@ -55,7 +50,6 @@ export default function RootLayout({
 			>
 				<Provider>
 					<UserAppHeader />
-					{/* <SvgAnimatedOpening /> */}
 					<div className=" w-screen flex pt-12 pr-4 minHeightSidebar">
 						<UserAppSidebar />
 						{children}
