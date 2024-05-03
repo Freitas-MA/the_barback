@@ -1,8 +1,10 @@
 import type { FormattedDrink } from "#/types";
 import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
+import { CookieButton } from "@/components/layout/cookieButton";
 
-export default async function CocktailDetails( { params }: { params: { id: string } }) {
-
+export default async function CocktailDetails({
+	params,
+}: { params: { id: string } }) {
 	const idString = params.id.toString();
 	const cocktail: FormattedDrink = (await fetchCocktailRecipe(idString)).data;
 	if (!cocktail) {
@@ -29,11 +31,10 @@ export default async function CocktailDetails( { params }: { params: { id: strin
 
 	const paragraphs = instructions.split(/(?<=\.)\s+/);
 
-
 	return (
-		<div className="cocktail-details my-5">
+		<div className="cocktail-details">
 			<div className="flex flex-col md:flex-row gap-8 m-4">
-				{/* <CookieButton name="favorite" value={idDrink} /> */}
+				<CookieButton name="favorite" value={idDrink} />
 				<img
 					src={strDrinkThumb}
 					alt={strDrink}

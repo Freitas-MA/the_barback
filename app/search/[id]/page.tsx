@@ -1,6 +1,8 @@
 import CardCocktail from "@/components/card/card";
 import type { FormattedDrink } from "#/types";
 import { searchCocktailConstructor } from "@/actions/searchCocktail";
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default async function SearchResults({
 	params,
@@ -17,6 +19,8 @@ export default async function SearchResults({
 			console.error("Error fetching cocktails:", error);
 		}
 
+	const id = uuidv4();
+
 	if (!idString) {
 		return (
 			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center border border-black mt-5">
@@ -32,8 +36,7 @@ export default async function SearchResults({
 				{cocktails ? (
 					<section className={className}>
 						{cocktails.map((cocktail) => (
-							// biome-ignore lint/correctness/useJsxKeyInIterable: <explanation>
-							<CardCocktail {...cocktail} />
+							<CardCocktail key={id} {...cocktail} />
 						))}
 					</section>
 				) : null}
