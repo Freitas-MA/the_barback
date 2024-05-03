@@ -1,29 +1,12 @@
-"use client"; // Add this line at the beginning
+import type { FormattedDrink } from "#/types";
+import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
+import { CookieButton } from "@/components/layout/cookieButton";
 
-import type { FormattedDrink } from "@/types";
-import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import { fetchCocktailRecipe } from "@/components/handlers/functions";
-
-export default function CocktailDetails() {
-	const { id } = useParams();
-	const idString = Array.isArray(id) ? id[0] : id;
-	const [cocktail, setCocktail] = useState<FormattedDrink | null>(null); // Handle potential missing data
-
-	useEffect(() => {
-		const fetchCocktail = async () => {
-			try {
-				const response = await fetchCocktailRecipe(idString);
-				setCocktail(response.data);
-			} catch (error) {
-				console.error("Error fetching cocktail recipe:", error);
-				// Handle the error gracefully, e.g., display an error message
-			}
-		};
-
-		fetchCocktail();
-	}, [idString]);
-
+export default async function CocktailDetails({
+	params,
+}: { params: { id: string } }) {
+	const idString = params.id.toString();
+	const cocktail: FormattedDrink = (await fetchCocktailRecipe(idString)).data;
 	if (!cocktail) {
 		return null; // Display a loading indicator while fetching data
 	}
@@ -46,16 +29,19 @@ export default function CocktailDetails() {
 		),
 	);
 
+	const paragraphs = instructions.split(/(?<=\.)\s+/);
+
 	return (
-		<div className="cocktail-details mt-5">
-			<div className="flex flex-row gap-8 m-4">
+		<div className="cocktail-details">
+			<div className="flex flex-col md:flex-row gap-8 m-4">
+				<CookieButton name="favorite" value={idDrink} />
 				<img
 					src={strDrinkThumb}
 					alt={strDrink}
 					className="w-80 rounded-md shadow-lg"
 				/>
 				<div className="flex flex-col gap-4">
-					<h2 className="text-4xl font-bold">{strDrink}</h2>
+					<h2 className="text-4xl font-bold tracking-wider">{strDrink}</h2>
 					<p>
 						<b>Category:</b> {strCategory}
 					</p>
@@ -63,14 +49,23 @@ export default function CocktailDetails() {
 						<b>Alcoholic:</b> {strAlcoholic}
 					</p>
 					<div className="mt-4 gap-4">
-						<h3 className="text-2xl font-bold">Ingredients:</h3>
-						<ul className="list-disc pl-4">{recipeIngredients}</ul>
+						<h3 className="text-2xl font-bold tracking-wider">Ingredients:</h3>
+						<ul className="list-disc pl-4 flex flex-col">
+							{recipeIngredients}
+						</ul>
 					</div>
 				</div>
 			</div>
 			<div className="px-8">
-				<h3 className="text-2xl font-bold">Instructions:</h3>
-				<p>{instructions}</p>
+				<h3 className="text-2xl font-bold tracking-wider">Instructions:</h3>
+				<div className="flex flex-col mt-2">
+					{paragraphs.map((paragraph, index) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<p key={index} className="capitalize-first leading-relaxed">
+							{paragraph}
+						</p>
+					))}
+				</div>
 			</div>
 		</div>
 	);

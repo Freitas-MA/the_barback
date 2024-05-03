@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import UserAppHeader from "@/components/layout-components/user-app-header";
-import UserAppSidebar from "@/components/layout-components/user-app-sidebar";
+import UserAppHeader from "@/components/layout/header";
+import UserAppSidebar from "@/components/layout/sidebar";
 import { Analytics } from "@vercel/analytics/react";
-import AppSignature from "@/components/layout-components/app.signature";
-import CookiesNotice from "@/components/auth/cookies";
+import AppSignature from "@/components/layout/footer";
+import CookiesNotice from "@/components/layout/cookies";
 import dynamic from "next/dynamic";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
 	title: "theBarback",
 	description: "Using AI to make your life easy!",
 	icons: {
-		icon: ["/favicon.ico"],
-		apple: ["/apple-touch-icon.png"],
-		shortcut: ["/apple-touch-icon.png"],
+		icon: ["/favicon/favicon.ico"],
+		apple: ["/favicon/apple-touch-icon.png"],
+		shortcut: ["/favicon/apple-touch-icon.png"],
 		// android: ["/android-chrome-192x192.png"],
 	},
 	manifest: "/site.webmanifest",
@@ -25,25 +26,46 @@ export const metadata: Metadata = {
 const Provider = dynamic(() => import("@/components/provider"), {
 	ssr: false,
 });
-const SearchBar = dynamic(() => import("@/components/searchBar/seachBar"), {
-	ssr: false,
-});
+
+const SvgAnimatedOpening = dynamic(
+	() => import("@/components/layout/SvgAnimatedOpening"),
+	{
+		ssr: false,
+	},
+);
 
 export default function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const acceptedCookiesClass = "hidden";
+	const notAcceptedCookiesClass =
+		"block flex flex-col items-center justify-center h-screen w-screen border border-black bg-stone-200 bg-opacity-90 z-50 fixed top-0 left-0 px-4 py-8 text-center";
+
+	const isCookieAccepted = cookies().has("cookiesAccepted");
+
 	return (
 		<html lang="en">
-			<body className={`${inter.className} relative min-h-screen`}>
+			<body
+				className={`${
+					inter.className
+				} relative min-h-screen overflow-x-hidden ${
+					isCookieAccepted ? "overflow-y-auto" : "overflow-y-hidden"
+				}`}
+			>
 				<Provider>
 					<UserAppHeader />
-					<div className=" w-screen flex pt-10 pr-4">
-						<UserAppSidebar className="hidden md:block z-10 border-solid border-black" />
+					{/* <SvgAnimatedOpening /> */}
+					<div className=" w-screen flex pt-12 pr-4 minHeightSidebar">
+						<UserAppSidebar />
 						{children}
 					</div>
-					<CookiesNotice className="flex flex-col fixed bottom-8 left-[50%] translate-x-[-50%] w-[350px] p-4 rounded-md bg-yellow-500 text-white text-center" />
+					<CookiesNotice
+						className={`${
+							isCookieAccepted ? acceptedCookiesClass : notAcceptedCookiesClass
+						}`}
+					/>
 					<AppSignature />
 				</Provider>
 				<Analytics />

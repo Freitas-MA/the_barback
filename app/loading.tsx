@@ -1,4 +1,5 @@
-import { CardLoader } from "@/components/common/cardLoader";
+import { CardLoader } from "@/components/card/cardLoader";
+import { v4 as uuidv4 } from "uuid";
 
 export default function loading() {
 	return (
@@ -6,8 +7,7 @@ export default function loading() {
 			{Array(10)
 				.fill(0)
 				.map((_, i) => (
-					/* biome-ignore lint/suspicious/noArrayIndexKey: <explanation> */
-					<CardLoader key={i} />
+					<CardLoader key={uuidv4()} />
 				))}
 		</div>
 	);

@@ -27,11 +27,13 @@
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.1.7",
     "jotai": "^2.7.1",
     "js-base64": "^3.7.7",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.307.0",
     "next": "14.0.4",
+    "ngrok": "^5.0.0-beta.2",
     "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
@@ -45,6 +47,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/cookie": "^0.6.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
