@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server";
-
+import { v4 as uuidv4 } from "uuid";
 interface Drink {
 	strDrink: string;
 	idDrink: string;
@@ -85,18 +85,17 @@ async function formatData(data: { drinks: Drink[] }): Promise<{
 }
 
 export async function GET(req: NextRequest, res: NextResponse) {
-	const timestamp = Date.now(); // Get the current timestamp
 	const response = await fetch(
-		`https://www.thecocktaildb.com/api/json/v1/1/random.php?_=${timestamp}`, // Add the timestamp as a query parameter
-		{ 
-            cache: "no-store",
-            // Add a unique cache busting parameter (e.g., timestamp)
-            headers: {
-                "Cache-Control": "no-cache",
-                Pragma: "no-cache",
-                "X-Timestamp": Date.now().toString(), // Example cache busting header
-            },
-        },
+		`https://www.thecocktaildb.com/api/json/v1/1/random.php?_=${uuidv4()}`, // Add the timestamp as a query parameter
+		{
+			cache: "no-cache",
+			// Add a unique cache busting parameter (e.g., timestamp)
+			headers: {
+				"Cache-Control": "no-cache",
+				Pragma: "no-cache",
+				"X-Timestamp": Date.now().toString(), // Example cache busting header
+			},
+		},
 	);
 	const data = await response.json();
 	const formattedData = await formatData(data);
