@@ -14,7 +14,7 @@ export default async function page() {
         let cocktailList: FormattedDrink[] = [];
         if (myCookies) {
           console.log("if aceito");
-          const cocktailPromises = myCookies.map(id => fetchCocktailRecipe(id));
+          const cocktailPromises = myCookies.map((id: string) => fetchCocktailRecipe(id));
           const cocktails = await Promise.all(cocktailPromises);
           cocktailList = cocktails.map(cocktail => cocktail.data);
         }

@@ -52,6 +52,7 @@ export interface Drink {
 }
 
 export interface FormattedDrink {
+  [x: string]: Key | null | undefined;
 	idDrink: string;
 	strDrink: string;
 	strCategory: string;
