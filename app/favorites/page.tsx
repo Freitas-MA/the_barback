@@ -4,8 +4,9 @@ import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
 import CardCocktail from "@/components/card/card";
 
 export default async function page() {
-    const myCookies = await JSON.parse(cookies().get("Favorite").value)
-    const className = "flex flex-row flex-wrap w-full justify-center items-center mt-5";
+  const favoriteCookie = cookies().get("Favorite");
+  const myCookies = await JSON.parse(favoriteCookie?.value ?? "[]");
+      const className = "flex flex-row flex-wrap w-full justify-center items-center mt-5";
 
     console.log(myCookies)
 
