@@ -18,9 +18,8 @@ export const metadata: Metadata = {
 		icon: ["/favicon/favicon.ico"],
 		apple: ["/favicon/apple-touch-icon.png"],
 		shortcut: ["/favicon/apple-touch-icon.png"],
-		// android: ["/android-chrome-192x192.png"],
 	},
-	manifest: "/site.webmanifest",
+	manifest: "/manifest.json",
 };
 
 const Provider = dynamic(() => import("@/components/provider"), {
