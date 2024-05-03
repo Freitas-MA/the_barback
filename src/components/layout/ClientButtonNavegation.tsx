@@ -31,7 +31,7 @@ export default async function ClientButtonNavegation({
 		<Button
 			variant={checkPage ? "outline" : "ghost"}
 			disabled={disabled as boolean}
-			className="flex flex-row justify-normal w-full hover:bg-slate-200"
+			className="flex flex-row justify-center md:justify-normal w-full hover:bg-slate-200"
 			onClick={handleClickPush}
 		>
 			{children}

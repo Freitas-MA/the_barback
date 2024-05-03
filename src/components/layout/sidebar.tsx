@@ -9,6 +9,7 @@ import { FaRobot } from "react-icons/fa6";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { IoBusiness } from "react-icons/io5";
 import dynamic from "next/dynamic";
+import InstallButton from "./installAsPWA";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
@@ -47,29 +48,30 @@ export default async function UserAppSidebar({
 					</h2>
 					<div className="md:flex-col md:space-y-1 md:w-full md:min-w-full md:text-center md:items-start md:px-0 flex flex-row items-center justify-between w-screen px-10">
 						<ClientButtonNavegation pathHref="/" title="Home" disabled={false}>
-							<AiOutlineHome className="md:mr-2" />
+							<AiOutlineHome className="md:mr-2 mr-0" />{" "}
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
 							pathHref="/search"
 							title="Search's"
 							disabled={false}
 						>
-							<IoMdSearch className="md:mr-2" />{" "}
+							<IoMdSearch className="md:mr-2 mr-0" />{" "}
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
 							pathHref="/favorites"
 							title="Favorites"
 							disabled={false}
 						>
-							<FaRegStar className="md:mr-2" />
+							<FaRegStar className="md:mr-2 mr-0" />
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
 							pathHref="/private"
 							title="Private"
 							disabled={true}
 						>
-							<BsIncognito className="md:mr-2" />
+							<BsIncognito className="md:mr-2 mr-0" />
 						</ClientButtonNavegation>
+						<InstallButton className="md:absolute md:bottom-4 md:left-4" />
 					</div>
 				</div>
 				<div className="hidden md:block px-3 py-2">
@@ -82,21 +84,21 @@ export default async function UserAppSidebar({
 							title="The Barback"
 							disabled={true}
 						>
-							<FaRobot className="md:mr-2" />
+							<FaRobot className="md:mr-2 mr-0" />
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
 							pathHref="/news"
 							title="News"
 							disabled={true}
 						>
-							<FaRegNewspaper className="md:mr-2" />
+							<FaRegNewspaper className="md:mr-2 mr-0" />
 						</ClientButtonNavegation>
 						<ClientButtonNavegation
 							pathHref="/business"
 							title="Business"
 							disabled={true}
 						>
-							<IoBusiness className="md:mr-2" />
+							<IoBusiness className="md:mr-2 mr-0" />
 						</ClientButtonNavegation>
 					</div>
 				</div>
