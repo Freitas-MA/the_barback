@@ -101,3 +101,5 @@ export async function GET(req: NextRequest, res: NextResponse) {
 	const formattedData = await formatData(data);
 	return NextResponse.json(formattedData, { status: 200 });
 }
+export const revalidate = 0;
+

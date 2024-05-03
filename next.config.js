@@ -20,10 +20,10 @@ const nextConfig = {
 				source: "/api/cocktaildb",
 				headers: [
 					{
-						key: "Cache-Control",
-						value: "no-store",
+					  key: 'Cache-Control',
+					  value: 'no-store, max-age=0',
 					},
-				],
+				  ],
 			},
 		];
 	},
