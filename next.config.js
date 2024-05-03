@@ -14,6 +14,19 @@ const nextConfig = {
 			},
 		],
 	},
+	async headers() {
+		return [
+			{
+				source: "/api/cocktaildb",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "no-store",
+					},
+				],
+			},
+		];
+	},
 };
 
 module.exports = withPWA(nextConfig);
