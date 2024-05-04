@@ -12,6 +12,12 @@ const nextConfig = {
 				port: "",
 				pathname: "/**",
 			},
+			{
+				protocol: "https",
+				hostname: "www.thecocktaildb.com",
+				port: "",
+				pathname: "/images/**",
+			}
 		],
 	},
 	async headers() {

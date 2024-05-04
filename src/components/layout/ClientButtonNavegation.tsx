@@ -1,7 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 
@@ -10,6 +9,7 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 	pathHref?: string;
 	children?: ReactNode;
 	disabled?: boolean;
+	revalidate?: boolean;
 }
 
 export default async function ClientButtonNavegation({
@@ -26,6 +26,9 @@ export default async function ClientButtonNavegation({
 
 	const handleClickPush = () => {
 		router.push(pathHref as string);
+		if(checkPage) {
+			router.refresh();
+		}
 	};
 	return (
 		<Button
