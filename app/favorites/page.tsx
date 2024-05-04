@@ -35,10 +35,10 @@ export default async function page() {
 							<span className="text-3xl">
 								Hey!
 								<br />
-								There's no cocktail here yet.
+								There&apos;s no cocktail here yet.
 							</span>
 							<br />
-							Time to start creating your list of favourites, it'll be here when
+							Time to start creating your list of favourites, it&apos;ll be here when
 							you get back!
 						</p>
 					)}
