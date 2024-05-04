@@ -9,9 +9,6 @@ export default async function page() {
 	const myCookies = await JSON.parse(favoriteCookie?.value ?? "[]");
 	const className =
 		"flex flex-row flex-wrap w-full justify-center items-center mt-5";
-
-	console.log(myCookies);
-
 	try {
 		let cocktailList: FormattedDrink[] = [];
 		if (myCookies) {
@@ -21,18 +18,29 @@ export default async function page() {
 			const cocktails = await Promise.all(cocktailPromises);
 			cocktailList = cocktails.map((cocktail) => cocktail.data);
 		}
-		console.log(cocktailList);
 		return (
 			<>
-				<div className={className}>
+				<div className='flex flex-row flex-wrap w-full justify-center items-center mt-5'>
 					{cocktailList.length > 0 ? (
-						<section className={className}>
-							{cocktailList.map((cocktail) => (
-								<CardCocktail key={uuidv4()} {...cocktail} />
-							))}
+						<section className='flex flex-col items-center justify-center'>
+							<h1 className="text-3xl tracking-widest font-bold">Your favorites:</h1>
+							<div className={className}>
+								{cocktailList.map((cocktail) => (
+									<CardCocktail key={uuidv4()} {...cocktail} />
+								))}
+							</div>
 						</section>
 					) : (
-						<p>No cocktails found.</p>
+						<p className="flex flex-col text-center">
+							<span className="text-3xl">
+								Hey!
+								<br />
+								There's no cocktail here yet.
+							</span>
+							<br />
+							Time to start creating your list of favourites, it'll be here when
+							you get back!
+						</p>
 					)}
 				</div>
 			</>
@@ -48,4 +56,3 @@ export default async function page() {
 		);
 	}
 }
-export const revalidate = 0;

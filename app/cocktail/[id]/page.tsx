@@ -1,6 +1,8 @@
 import type { FormattedDrink } from "#/types";
 import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
-import { CookieButton } from "@/components/layout/cookieButton";
+import { cookies } from "next/headers";
+import Image from "next/image";
+import dynamic from "next/dynamic";
 
 export default async function CocktailDetails({
 	params,
@@ -10,6 +12,15 @@ export default async function CocktailDetails({
 	if (!cocktail) {
 		return null; // Display a loading indicator while fetching data
 	}
+
+	const CookieButton = dynamic(() => import("@/components/layout/cookieButton"), {
+		ssr: false,
+		});
+
+	const favoriteCookie = cookies().get("Favorite");
+	const myCookies = await JSON.parse(favoriteCookie?.value ?? "[]");
+
+	const myCocktailIsFavorite = myCookies.includes(cocktail.idDrink);
 
 	const {
 		idDrink,
@@ -32,13 +43,19 @@ export default async function CocktailDetails({
 	const paragraphs = instructions.split(/(?<=\.)\s+/);
 
 	return (
-		<div className="cocktail-details">
-			<div className="flex flex-col md:flex-row gap-8 m-4">
-				<CookieButton name="favorite" value={idDrink} />
-				<img
+		<div className="relative cocktail-details">
+			<div className="flex flex-col md:flex-row gap-8 m-4 ">
+					<CookieButton
+						favorit={myCocktailIsFavorite}
+						name="favorite"
+						value={idDrink as string}
+					/>
+				<Image
 					src={strDrinkThumb}
 					alt={strDrink}
-					className="w-80 rounded-md shadow-lg"
+					width={320}
+					height={320}
+					className="rounded-md shadow-lg"
 				/>
 				<div className="flex flex-col gap-4">
 					<h2 className="text-4xl font-bold tracking-wider">{strDrink}</h2>

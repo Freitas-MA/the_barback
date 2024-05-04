@@ -26,6 +26,8 @@ const InstallButton = ({ className }: InstallButtonProps) => {
 		window.addEventListener("appinstalled", () => {
 			setIsAppInstalled(true);
 		});
+		const isAppInstalled = localStorage.getItem("appInstalled") === "true";
+		setIsAppInstalled(isAppInstalled);
 
 		const handleBeforeInstallPrompt = (event: Event) => {
 			event.preventDefault();
@@ -49,6 +51,7 @@ const InstallButton = ({ className }: InstallButtonProps) => {
 			deferredPrompt.userChoice.then((choiceResult: { outcome: string }) => {
 				if (choiceResult.outcome === "accepted") {
 					console.log("User accepted the A2HS prompt");
+					localStorage.setItem("appInstalled", "true");
 				} else {
 					console.log("User dismissed the A2HS prompt");
 				}
