@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-
 export default async function CocktailDetails({
 	params,
 }: { params: { id: string } }) {
