@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa";
 import { useState } from "react";
 import { checkForCookiesAsArray } from "@/actions/checkForCookiesArray";
 import { v4 as uuidv4 } from "uuid";
+import { usePathname, useRouter } from "next/navigation";
 
 interface CookieButtonProps {
 	name: string;
@@ -14,23 +15,38 @@ interface CookieButtonProps {
 export default function CookieButton({ value, favorit }: CookieButtonProps) {
 	const [isFavorite, setIsFavorite] = useState<boolean>(favorit);
 
-	async function cookieToggle() {
-		const currentFavorites = await checkForCookiesAsArray("Favorite");
-		let newFavoriteCookies = [];
-
-		if (isFavorite) {
-			newFavoriteCookies = currentFavorites.filter(
-				(cookie: string) => cookie !== value,
-			);
-		} else {
-			newFavoriteCookies = [...currentFavorites, value];
+	const pathName = usePathname();
+	const router = useRouter();
+	const handleClickPush = () => {
+		const checkPage = pathName === "/favorites";
+		if (checkPage) {
+			router.refresh();
 		}
+	};
 
-		if (
-			JSON.stringify(newFavoriteCookies) !== JSON.stringify(currentFavorites)
-		) {
-			document.cookie = `Favorite=${JSON.stringify(newFavoriteCookies)}`;
-			setIsFavorite(!isFavorite);
+	async function cookieToggle() {
+		try {
+			const currentFavorites = await checkForCookiesAsArray("Favorite");
+			let newFavoriteCookies = [];
+
+			if (isFavorite) {
+				newFavoriteCookies = currentFavorites.filter(
+					(cookie: string) => cookie !== value,
+				);
+			} else {
+				newFavoriteCookies = [...currentFavorites, value];
+			}
+
+			if (
+				JSON.stringify(newFavoriteCookies) !== JSON.stringify(currentFavorites)
+			) {
+				document.cookie = `Favorite=${JSON.stringify(newFavoriteCookies)}`;
+				setIsFavorite(!isFavorite);
+			}
+		} catch (error) {
+			console.error("Error toggling favorite cookie:", error);
+		} finally {
+			handleClickPush();
 		}
 	}
 

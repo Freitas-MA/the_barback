@@ -11,21 +11,33 @@ export default async function SearchResults({
 	const className =
 		"flex flex-row flex-wrap w-full justify-center items-center mt-5";
 	let cocktails: FormattedDrink[] = [];
+	let getThecocktail = false
 
 		try {
 			cocktails = await searchCocktailConstructor(idString);
+			getThecocktail = true;
 			console.log("server fecth success");
 		} catch (error) {
 			console.error("Error fetching cocktails:", error);
+			getThecocktail = false;
 		}
 
 	const id = uuidv4();
 
 	if (!idString) {
 		return (
-			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center border border-black mt-5">
+			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center px-6 mt-5">
 				<h2 className="text-4xl font-bold">Sorry, no cocktail found here.</h2>
 				<p>Please, search another one on the search bar.</p>
+			</div>
+		);
+	}
+
+	if(getThecocktail === false){
+		return (
+			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center px-6 mt-5">
+				<h2 className="text-4xl font-bold">Sorry, we couldn't find any cocktails under the term: {idString}  </h2>
+				<p>Please try another one in the search bar.</p>
 			</div>
 		);
 	}
