@@ -26,7 +26,7 @@ export default async function page() {
 							<h1 className="text-3xl tracking-widest font-bold">Your favorites:</h1>
 							<div className={className}>
 								{cocktailList.map((cocktail) => (
-									<CardCocktail key={uuidv4()} {...cocktail} />
+									<CardCocktail key={cocktail.idDrink} {...cocktail} />
 								))}
 							</div>
 						</section>

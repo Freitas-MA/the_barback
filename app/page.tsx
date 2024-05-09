@@ -39,7 +39,7 @@ export default async function Home() {
 				{cocktails ? (
 					<section className={className}>
 						{cocktails.map((cocktail) => (
-							<CardCocktail key={uuidv4()} {...cocktail} />
+							<CardCocktail key={cocktail.idDrink} {...cocktail} />
 						))}
 					</section>
 				) : null}
