@@ -36,7 +36,7 @@ export default async function SearchResults({
 	if(getThecocktail === false){
 		return (
 			<div className="flex flex-col flex-wrap min-h-full w-full justify-center items-center text-center px-6 mt-5">
-				<h2 className="text-4xl font-bold">Sorry, we couldn't find any cocktails under the term: {idString}  </h2>
+				<h2 className="text-4xl font-bold">Sorry, we couldn&apos;t find any cocktails under the term: {idString}  </h2>
 				<p>Please try another one in the search bar.</p>
 			</div>
 		);
