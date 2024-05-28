@@ -3,7 +3,7 @@
 
 # About the project
 
-https://the-barback.vercel.app/
+[https://the-barback.vercel.app/](https://the-barback.vercel.app/)
 
 The Barback is an application dedicated to the quick and reliable search and presentation of cocktail recipes. 
 The application consists of a home page, where 10 random cocktails are rendered from the database thecocktaildb.com, a search page, where searches made by cocktail names entered in the search bar are rendered, and a favorites page, where all cocktails saved by the client during navigation are stored. 
