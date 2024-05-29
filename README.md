@@ -16,7 +16,7 @@ The application consists of a home page, where 10 random cocktails are rendered 
 
 
 ## Conceptual model
-![Conceptual Model]
+![Conceptual Model](https://raw.githubusercontent.com/Freitas-MA/the_barback/main/src/assets/The%20Barback.png)
 
 # Technologies used
 ## Back end
