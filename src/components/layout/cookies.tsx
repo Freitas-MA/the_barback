@@ -17,7 +17,10 @@ const CookiesNotice: React.FC<CookiesNoticeProps> = async ({ className }) => {
 	return (
 		<>
 			<div className={`${className}`}>
-				<p className="cookieHeading text-xl font-bold z-2">Cookies.</p>
+				<p className="cookieHeading text-xl font-bold z-2">C
+					ookies.
+					
+					</p>
 				<p className="cookieDescription flex flex-col text-base z-2">
 					This website uses cookies for a better user experience. By continuing
 					to use this site, you accept the use of cookies.{" "}
