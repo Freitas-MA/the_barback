@@ -2,8 +2,9 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { cocktailsConstructor } from "@/actions/randomCocktail";
-import CardCocktail from "@/components/card/card"
-import { v4 as uuidv4 } from 'uuid';
+import CardCocktail from "@/components/card/card";
+import { v4 as uuidv4 } from "uuid";
+import InfinityScroll from "@/components/layout/infinityScroll";
 
 export default async function Home() {
 	// // Initialize a variable to track if the user is logged in
@@ -32,10 +33,10 @@ export default async function Home() {
 	const className =
 		"flex flex-row flex-wrap w-full justify-center items-start mt-5";
 
-
 	return (
 		<>
-			<div className={className}>
+			{/* 
+						<div className={className}>
 				{cocktails ? (
 					<section className={className}>
 						{cocktails.map((cocktail) => (
@@ -43,7 +44,10 @@ export default async function Home() {
 						))}
 					</section>
 				) : null}
-			</div>
+			</div>	
+			*/}
+
+			<InfinityScroll />
 		</>
 	);
 }

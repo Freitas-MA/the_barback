@@ -1,14 +1,13 @@
+
 import React from "react";
 import type { FormattedDrink } from "#/types";
 import Link from "next/link";
 import CookieButton from "@/components/layout/cookieButton";
-import { cookies } from "next/headers";
 import Image from "next/image";
 
 export default async function CardCocktail(cocktail: FormattedDrink) {
-	const cookie = cookies().get("Favorite");
 
-	const myCocktailIsFavorite = cookie?.value.includes(cocktail.idDrink) ?? false;
+	const myCocktailIsFavorite = false;
 	const cardStyle =
 		"flex flex-col justify-between text-center items-center gap-2 w-[15rem] h-[18rem] bg-neutral-100 rounded-md shadow-md p-4 m-4 hover:shadow-lg relative";
 
