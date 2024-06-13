@@ -7,7 +7,7 @@ export default function PrivacyPolicy() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">Why We Use Cookies</h2>
           <p className="text-gray-700 mb-4">
-            Our website uses cookies to improve your browsing experience, to personalize content and advertisements, to provide social media features, and to analyze our traffic. Cookies are small text files that can be used by websites to make a user's experience more efficient.
+            Our website uses cookies to improve your browsing experience, to personalize content and advertisements, to provide social media features, and to analyze our traffic. Cookies are small text files that can be used by websites to make a user`&apos;s experience more efficient.
           </p>
           <p className="text-gray-700 mb-4">
             We use different types of cookies, including:
@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">European and World Laws Regarding Cookies</h2>
           <p className="text-gray-700 mb-4">
-            The use of cookies is regulated under various laws and regulations around the world to protect users' privacy and personal data. Below are some key laws and regulations:
+            The use of cookies is regulated under various laws and regulations around the world to protect users`&apos; privacy and personal data. Below are some key laws and regulations:
           </p>
   
           <h3 className="text-xl font-semibold mb-2">General Data Protection Regulation (GDPR)</h3>
@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
   
           <h3 className="text-xl font-semibold mb-2">Other International Regulations</h3>
           <p className="text-gray-700 mb-4">
-            Many other countries have their own privacy laws and regulations governing the use of cookies and personal data, including Canada's Personal Information Protection and Electronic Documents Act (PIPEDA), Australia's Privacy Act, and Brazil's General Data Protection Law (LGPD).
+            Many other countries have their own privacy laws and regulations governing the use of cookies and personal data, including Canada`&apos;s Personal Information Protection and Electronic Documents Act (PIPEDA), Australia`&apos;s Privacy Act, and Brazil`&apos;s General Data Protection Law (LGPD).
           </p>
         </section>
   
