@@ -1,7 +1,7 @@
 "use client";
 import { FaRegStar } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { checkForCookiesAsArray } from "@/actions/checkForCookiesArray";
 import { v4 as uuidv4 } from "uuid";
 import { usePathname, useRouter } from "next/navigation";
@@ -13,7 +13,23 @@ interface CookieButtonProps {
 }
 
 export default function CookieButton({ value, favorit }: CookieButtonProps) {
+
+	const [favorites, setFavorites] = useState<string[]>([]);
 	const [isFavorite, setIsFavorite] = useState<boolean>(favorit);
+
+	useEffect(() => {
+		const getFavoritesCookies = async () => {
+			try {
+				const favoriteCookies = await checkForCookiesAsArray("Favorite");
+				setFavorites(favoriteCookies);
+			} catch (error) {
+				console.error("Error getting favorite cookies:", error);
+			}
+		};
+
+		getFavoritesCookies();
+	}, []);	
+
 
 	const pathName = usePathname();
 	const router = useRouter();

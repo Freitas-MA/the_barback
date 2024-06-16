@@ -3,37 +3,46 @@ import { useEffect, useState, useCallback } from "react";
 import CardCocktail from "../card/card";
 import { infinityScrollConstructor } from "@/actions/infinityCocktails";
 
-// Types
 import type { FormattedDrink } from "#/types";
 
 function InfinityScroll() {
-	// Styles
-	const className =
-		"flex flex-row flex-wrap w-full justify-center items-start mt-5";
+	const className = "flex flex-row flex-wrap w-full justify-center items-start mt-5";
 
-	// State
-	const [cocktailsInfinity, setCocktailsInfinity] = useState<FormattedDrink[]>(
-		[],
-	);
+	const [cocktailsInfinity, setCocktailsInfinity] = useState<FormattedDrink[]>([]);
+	const [loading, setLoading] = useState(false);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	const getCocktails = useCallback(async () => {
 		const localUrl = process.env.NEXT_PUBLIC_BASE_URL;
-		const newCocktails = await infinityScrollConstructor(
-			localUrl,
-			cocktailsInfinity,
-		);
-		setCocktailsInfinity((prevCocktails) => [
-			...prevCocktails,
-			...newCocktails,
-		]);
-	}, []);
+		setLoading(true);
+		const newCocktails = await infinityScrollConstructor(localUrl);
+		setLoading(false);
 
-	// Fetch initial cocktails on component mount
+		for (const cocktail of newCocktails) {
+			setCocktailsInfinity(prevCocktails => [...prevCocktails, cocktail]);
+			await new Promise(resolve => setTimeout(resolve, 100));
+		}
+	}, [cocktailsInfinity]);
+
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		getCocktails();
-	}, [getCocktails]);
+	}, []);
+// TODO Fix the infinite scroll
+useEffect(() => {
+    const handleScroll = async () => {
+        if (
+            window.innerHeight + document.documentElement.scrollTop !==
+            document.documentElement.offsetHeight
+        )
+            return;
+        await getCocktails();
+    };
 
-	// Handle scroll event
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+}, [getCocktails]);
+
 	const handleScroll = useCallback(async () => {
 		console.log("handleScroll");
 		await getCocktails();
@@ -44,14 +53,15 @@ function InfinityScroll() {
 			{cocktailsInfinity.length > 0 ? (
 				<section className={className}>
 					{cocktailsInfinity.map((cocktail) => (
-						<CardCocktail key={cocktail.idDrink} {...cocktail} />
+						<CardCocktail key={cocktail.idDrink} cocktail={cocktail} />
 					))}
 					<button
 						type="button"
 						onClick={handleScroll}
 						className="border border-slate-900 p-1"
+						disabled={loading}
 					>
-						Load more cocktails
+						{loading ? "Loading..." : "Load more cocktails"}
 					</button>
 				</section>
 			) : null}

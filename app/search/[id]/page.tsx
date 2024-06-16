@@ -48,7 +48,7 @@ export default async function SearchResults({
 				{cocktails ? (
 					<section className={className}>
 						{cocktails.map((cocktail) => (
-							<CardCocktail key={id} {...cocktail} />
+							<CardCocktail key={id} cocktail={cocktail} />
 						))}
 					</section>
 				) : null}

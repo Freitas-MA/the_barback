@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import type { FormattedDrink } from "#/types";
 import { fetchCocktailRecipe } from "@/actions/fetchCocktail";
 import CardCocktail from "@/components/card/card";
-import { v4 as uuidv4 } from "uuid";
 
 export default async function page() {
 	const favoriteCookie = cookies().get("Favorite");
@@ -26,7 +25,7 @@ export default async function page() {
 							<h1 className="text-3xl tracking-widest font-bold">Your favorites:</h1>
 							<div className={className}>
 								{cocktailList.map((cocktail) => (
-									<CardCocktail key={cocktail.idDrink} {...cocktail} />
+									<CardCocktail key={cocktail.idDrink} cocktail={cocktail} />
 								))}
 							</div>
 						</section>
