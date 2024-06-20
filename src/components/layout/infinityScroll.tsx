@@ -1,15 +1,25 @@
 "use client";
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import CardCocktail from "../card/card";
 import { infinityScrollConstructor } from "@/actions/infinityCocktails";
-
 import type { FormattedDrink } from "#/types";
+import { useInfiniteScroll } from "react-use-infinite-scroll-hook";
+import { CardLoader } from "../card/cardLoader";
 
 function InfinityScroll() {
-	const className = "flex flex-row flex-wrap w-full justify-center items-start mt-5";
+	const className =
+		"flex flex-row flex-shrink-0 flex-grow-0 flex-wrap w-full justify-center items-start mt-5";
 
-	const [cocktailsInfinity, setCocktailsInfinity] = useState<FormattedDrink[]>([]);
+	const [cocktailsInfinity, setCocktailsInfinity] = useState<FormattedDrink[]>(() => {
+		// Try to get the cached data from sessionStorage
+		const cachedData = sessionStorage.getItem('cocktailsInfinity');
+		return cachedData ? JSON.parse(cachedData) : [];
+	});
 	const [loading, setLoading] = useState(false);
+
+	const cacheData = useCallback((data: FormattedDrink[]) => {
+		sessionStorage.setItem('cocktailsInfinity', JSON.stringify(data));
+	}, []);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	const getCocktails = useCallback(async () => {
@@ -18,51 +28,39 @@ function InfinityScroll() {
 		const newCocktails = await infinityScrollConstructor(localUrl);
 		setLoading(false);
 
-		for (const cocktail of newCocktails) {
-			setCocktailsInfinity(prevCocktails => [...prevCocktails, cocktail]);
-			await new Promise(resolve => setTimeout(resolve, 100));
-		}
-	}, [cocktailsInfinity]);
+		setCocktailsInfinity((prevCocktails) => {
+			const updatedCocktails = [...prevCocktails, ...newCocktails];
+			cacheData(updatedCocktails);
+			return updatedCocktails;
+		});
+	}, [cacheData, cocktailsInfinity]);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <This is the start-up cocktail>
 	useEffect(() => {
-		getCocktails();
+		if (cocktailsInfinity.length === 0) {
+			getCocktails();
+		}
 	}, []);
-// TODO Fix the infinite scroll
-useEffect(() => {
-    const handleScroll = async () => {
-        if (
-            window.innerHeight + document.documentElement.scrollTop !==
-            document.documentElement.offsetHeight
-        )
-            return;
-        await getCocktails();
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-}, [getCocktails]);
 
 	const handleScroll = useCallback(async () => {
 		console.log("handleScroll");
 		await getCocktails();
 	}, [getCocktails]);
 
+	const scrollElementRef = useInfiniteScroll<HTMLSpanElement>(getCocktails);
+
 	return (
-		<div>
+		<div className="w-full h-auto">
 			{cocktailsInfinity.length > 0 ? (
 				<section className={className}>
 					{cocktailsInfinity.map((cocktail) => (
 						<CardCocktail key={cocktail.idDrink} cocktail={cocktail} />
 					))}
-					<button
-						type="button"
-						onClick={handleScroll}
-						className="border border-slate-900 p-1"
-						disabled={loading}
-					>
-						{loading ? "Loading..." : "Load more cocktails"}
-					</button>
+					{loading ? <CardLoader /> : null}
+					<span
+						ref={scrollElementRef}
+						style={{ visibility: "hidden", width: 0, height: 0 }}
+					/>
 				</section>
 			) : null}
 		</div>

@@ -13,9 +13,12 @@ export default async function CocktailDetails({
 		return null; // Display a loading indicator while fetching data
 	}
 
-	const CookieButton = dynamic(() => import("@/components/layout/cookieButton"), {
-		ssr: false,
-		});
+	const CookieButton = dynamic(
+		() => import("@/components/layout/cookieButton"),
+		{
+			ssr: false,
+		},
+	);
 
 	const favoriteCookie = cookies().get("Favorite");
 	const myCookies = await JSON.parse(favoriteCookie?.value ?? "[]");
@@ -45,17 +48,17 @@ export default async function CocktailDetails({
 	return (
 		<div className="relative cocktail-details">
 			<div className="flex flex-col md:flex-row gap-8 m-4 ">
-					<CookieButton
-						favorit={myCocktailIsFavorite}
-						name="favorite"
-						value={idDrink as string}
-					/>
+				<CookieButton
+					favorit={myCocktailIsFavorite}
+					name="favorite"
+					value={idDrink as string}
+				/>
 				<Image
 					src={strDrinkThumb}
 					alt={strDrink}
 					width={320}
 					height={320}
-					className="rounded-md shadow-lg"
+					className="rounded-md shadow-lg object-cover"
 				/>
 				<div className="flex flex-col gap-4">
 					<h2 className="text-4xl font-bold tracking-wider">{strDrink}</h2>

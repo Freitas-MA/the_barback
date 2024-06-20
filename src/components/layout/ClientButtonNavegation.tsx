@@ -12,15 +12,16 @@ interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 	revalidate?: boolean;
 }
 
-export default async function ClientButtonNavegation({
+export default function ClientButtonNavegation({
 	title,
 	pathHref,
 	children,
 	disabled,
 }: SidebarProps) {
 	const pathName = usePathname();
-	// biome-ignore lint/suspicious/noDoubleEquals: <explanation>
-	const checkPage = pathName == pathHref;
+
+	console.log(pathName, pathHref);
+	const checkPage = pathHref === '/' ? pathName === pathHref : pathName.includes(pathHref as string);
 
 	const router = useRouter();
 

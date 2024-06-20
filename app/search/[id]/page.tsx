@@ -16,7 +16,6 @@ export default async function SearchResults({
 		try {
 			cocktails = await searchCocktailConstructor(idString);
 			getThecocktail = true;
-			console.log("server fecth success");
 		} catch (error) {
 			console.error("Error fetching cocktails:", error);
 			getThecocktail = false;
