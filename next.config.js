@@ -4,6 +4,11 @@ const withPWA = require("next-pwa")({
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+	experimental: {
+		serverActions: {
+			allowedOrigins: ['localhost:3000', 'https://github.dev', 'crispy-goggles-g4x44ww66r7fwvjj-3000.app.github.dev'],
+		},
+	},
 	images: {
 		remotePatterns: [
 			{

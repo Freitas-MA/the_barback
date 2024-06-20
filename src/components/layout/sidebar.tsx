@@ -10,7 +10,6 @@ import { FaRegNewspaper } from "react-icons/fa6";
 import { IoBusiness } from "react-icons/io5";
 import dynamic from "next/dynamic";
 import InstallButton from "./installAsPWA";
-import { revalidatePath } from "next/cache";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
