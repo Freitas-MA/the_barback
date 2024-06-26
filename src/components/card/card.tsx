@@ -1,13 +1,15 @@
 import React from "react";
 import type { FormattedDrink } from "#/types";
 import Link from "next/link";
-import CookieButton from "@/components/layout/cookieButton";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 const CardCocktail = React.memo(function CardCocktail({ cocktail }: { cocktail: FormattedDrink }) {
   const myCocktailIsFavorite = false;
   const cardStyle =
     "flex flex-col justify-between text-center items-center gap-2 w-[15rem] h-[18rem] bg-neutral-100 rounded-md shadow-md p-4 m-4 hover:shadow-lg relative";
+
+const CookieButton = dynamic(() => import("@/components/layout/cookieButton"), { ssr: false });
 
   return (
     <div className="relative transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
