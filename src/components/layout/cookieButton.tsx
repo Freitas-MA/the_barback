@@ -6,22 +6,28 @@ import { checkForCookiesAsArray } from "@/actions/checkForCookiesArray";
 import { v4 as uuidv4 } from "uuid";
 import { usePathname, useRouter } from "next/navigation";
 
+
 interface CookieButtonProps {
 	name: string;
 	value: string;
 	favorit: boolean;
+	refresh?: boolean;
 }
 
-export default function CookieButton({ value, favorit }: CookieButtonProps) {
+export default function CookieButton({ value, favorit, refresh }: CookieButtonProps) {
 
 	const [favorites, setFavorites] = useState<string[]>([]);
 	const [isFavorite, setIsFavorite] = useState<boolean>(favorit);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: <First render>
 	useEffect(() => {
 		const getFavoritesCookies = async () => {
 			try {
 				const favoriteCookies = await checkForCookiesAsArray("Favorite");
 				setFavorites(favoriteCookies);
+				if (favoriteCookies.includes(value)) {
+					setIsFavorite(true);
+				}
 			} catch (error) {
 				console.error("Error getting favorite cookies:", error);
 			}
@@ -35,7 +41,9 @@ export default function CookieButton({ value, favorit }: CookieButtonProps) {
 	const router = useRouter();
 	const handleClickPush = () => {
 		const checkPage = pathName === "/favorites";
+		console.log("checkPage", checkPage);
 		if (checkPage) {
+			console.log("Entrou!", checkPage);
 			router.refresh();
 		}
 	};

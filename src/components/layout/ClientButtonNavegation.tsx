@@ -20,14 +20,16 @@ export default function ClientButtonNavegation({
 }: SidebarProps) {
 	const pathName = usePathname();
 
-	console.log(pathName, pathHref);
-	const checkPage = pathHref === '/' ? pathName === pathHref : pathName.includes(pathHref as string);
+	const checkPage =
+		pathHref === "/"
+			? pathName === pathHref
+			: pathName.includes(pathHref as string);
 
 	const router = useRouter();
 
 	const handleClickPush = () => {
 		router.push(pathHref as string);
-		if(checkPage) {
+		if (checkPage) {
 			router.refresh();
 		}
 	};
