@@ -9,8 +9,6 @@ export default function FavoritesPage() {
     const [cocktailList, setCocktailList] = useState<FormattedDrink[]>([]);
     const className = "flex flex-row flex-wrap w-full justify-center items-center mt-5";
     
-    const [myCookies, setMyCookies] = useState<string[]>([]);
-
     useEffect(() => {
         const fetchCocktails = async () => {
             try {
@@ -19,8 +17,6 @@ export default function FavoritesPage() {
                     // Passo 2: Converter para Set para remover duplicatas
                     const uniqueCookies: string[] = Array.from(new Set(getCookies));
                     
-                    // Passo 3: Atualizar o estado com os cookies únicos
-                    setMyCookies(uniqueCookies);
     
                     // Passo 4: Usar os cookies únicos para buscar as receitas
                     const cocktailPromises = uniqueCookies.map((id: string) =>
