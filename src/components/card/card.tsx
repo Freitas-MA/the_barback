@@ -15,18 +15,18 @@ const CardCocktail = React.memo(function CardCocktail({
 		() => import("@/components/layout/cookieButton"),
 		{ ssr: false },
 	);
-
+	//
 	return (
-		<div className="relative w-auto h-auto transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-			<CookieButton
-				favorit={myCocktailIsFavorite}
-				name="Favorite"
-				value={cocktail.idDrink}
-				classProp="absolute top-2 right-2 md:right-14 z-10"
-			/>
-			<Link href={{ pathname: `/cocktail/${cocktail.idDrink}` }}>
-				<div className={cardStyle} key={cocktail.idDrink}>
-					<div className="flex flex-col items-center justify-center">
+		<>
+			<div className={cardStyle} key={cocktail.idDrink}>
+				<CookieButton
+					favorit={myCocktailIsFavorite}
+					name="Favorite"
+					value={cocktail.idDrink}
+					classProp="absolute top-0 md:-top-[0.5rem] right-2 md:-right-[0.5rem] md:scale-150 z-10"
+				/>
+				<Link href={{ pathname: `/cocktail/${cocktail.idDrink}` }}>
+					<div className="relative flex flex-col items-center justify-center">
 						<h1 className="max-w-[80%] text-xs line-clamp-2">
 							{cocktail.strDrink}
 						</h1>
@@ -50,9 +50,9 @@ const CardCocktail = React.memo(function CardCocktail({
 							{cocktail.strAlcoholic}
 						</button>
 					</div>
-				</div>
-			</Link>
-		</div>
+				</Link>
+			</div>
+		</>
 	);
 });
 

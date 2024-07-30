@@ -4,14 +4,14 @@ import "react-social-icons/linkedin";
 
 export default function AppSignature() {
 	return (
-		<div className="flex flex-row mb-8 md:mb-0 h-12 bottom-0 left-5 pl-4 items-center text-center">
-			<p className="text-sm">
+		<div className="absolute flex flex-row w-screen h-4 md:h-12 bottom-0 justify-between pl-4 items-center text-center bg-slate-300 bg-opacity-90">
+			<p className="text-sm scale-50 md:scale-100">
 				<span className="font-thin">Designed by: </span>
 				<a href="https://portfolio-sepia-eight-67.vercel.app/" target="__blank">
 					MFreitas
 				</a>
 			</p>
-			<div className="grayscale">
+			<div className="grayscale scale-50 md:scale-100">
 				<SocialIcon
 					style={{ scale: "0.5" }}
 					url="https://github.com/Freitas-MA"

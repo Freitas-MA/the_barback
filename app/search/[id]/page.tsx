@@ -56,14 +56,4 @@ export default async function SearchResults({
 	);
 }
 
-// export default function SearchResults({
-// 	params,
-// }: { params: { id: string } }) {
-// 	const cocktail = params.id;
-// 	console.log(cocktail);
-// 	return (
-// 		<div className="w-full h-screen flex items-center justify-center">
-// 			<h1>{cocktail ? `Cocktail: ${cocktail}` : "No cocktail found here."}</h1>
-// 		</div>
-// 	);
-// }
+

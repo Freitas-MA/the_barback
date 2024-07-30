@@ -33,8 +33,6 @@ export default async function Home() {
 	const className =
 		"flex flex-row flex-wrap w-full justify-center items-start mt-5";
 
-		console.log('Hello world')
-
 	return (
 		<>
 			{/* 
