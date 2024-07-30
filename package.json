@@ -20,6 +20,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
     "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "@vercel/analytics": "^1.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

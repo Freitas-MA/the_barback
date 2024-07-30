@@ -6,16 +6,14 @@ import { checkForCookiesAsArray } from "@/actions/checkForCookiesArray";
 import { v4 as uuidv4 } from "uuid";
 import { usePathname, useRouter } from "next/navigation";
 
-
 interface CookieButtonProps {
 	name: string;
 	value: string;
 	favorit: boolean;
-	refresh?: boolean;
+	classProp?: string;
 }
 
-export default function CookieButton({ value, favorit, refresh }: CookieButtonProps) {
-
+export default function CookieButton({ value, favorit, classProp }: CookieButtonProps) {
 	const [favorites, setFavorites] = useState<string[]>([]);
 	const [isFavorite, setIsFavorite] = useState<boolean>(favorit);
 
@@ -34,8 +32,7 @@ export default function CookieButton({ value, favorit, refresh }: CookieButtonPr
 		};
 
 		getFavoritesCookies();
-	}, []);	
-
+	}, []);
 
 	const pathName = usePathname();
 	const router = useRouter();
@@ -74,8 +71,8 @@ export default function CookieButton({ value, favorit, refresh }: CookieButtonPr
 		}
 	}
 
-	const className =
-		"absolute right-6 top-6 w-auto h-auto p-1 rounded-md bg bg-neutral-100 hover:scale-125 z-30";
+	const className = classProp ?? "absolute right-6 top-6 w-auto h-auto p-1 rounded-md bg bg-neutral-100 hover:scale-125 z-30";
+		
 
 	const id = uuidv4();
 

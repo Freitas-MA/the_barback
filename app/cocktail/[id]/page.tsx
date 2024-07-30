@@ -46,13 +46,8 @@ export default async function CocktailDetails({
 	const paragraphs = instructions.split(/(?<=\.)\s+/);
 
 	return (
-		<div className="relative cocktail-details">
-			<div className="flex flex-col md:flex-row gap-8 m-4 ">
-				<CookieButton
-					favorit={myCocktailIsFavorite}
-					name="favorite"
-					value={idDrink as string}
-				/>
+		<div className="relative cocktail-details w-full">
+			<div className="flex flex-col lg:flex-row gap-8 m-4">
 				<Image
 					src={strDrinkThumb}
 					alt={strDrink}
@@ -61,7 +56,15 @@ export default async function CocktailDetails({
 					className="rounded-md shadow-lg object-cover"
 				/>
 				<div className="flex flex-col gap-4">
-					<h2 className="text-4xl font-bold tracking-wider">{strDrink}</h2>
+					<h2 className="text-4xl w-[80%] font-bold tracking-wider relative">
+						{strDrink}
+						<CookieButton
+							favorit={myCocktailIsFavorite}
+							name="favorite"
+							value={idDrink as string}
+							classProp="absolute top-0 md:-right-10 -right-4 scale-75 md:scale-75"
+						/>
+					</h2>
 					<p>
 						<b>Category:</b> {strCategory}
 					</p>
