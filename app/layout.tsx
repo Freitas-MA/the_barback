@@ -3,11 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import UserAppHeader from "@/components/layout/header";
 import UserAppSidebar from "@/components/layout/sidebar";
-import { Analytics } from "@vercel/analytics/react";
 import AppSignature from "@/components/layout/footer";
 import CookiesNotice from "@/components/layout/cookies";
 import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
+// Analytics and SpeedInsights
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,6 +62,7 @@ export default function RootLayout({
 					/>
 				</Provider>
 				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
