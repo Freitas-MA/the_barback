@@ -3,11 +3,13 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import UserAppHeader from "@/components/layout/header";
 import UserAppSidebar from "@/components/layout/sidebar";
-import { Analytics } from "@vercel/analytics/react";
 import AppSignature from "@/components/layout/footer";
 import CookiesNotice from "@/components/layout/cookies";
 import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
+// Analytics and SpeedInsights
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,8 +28,6 @@ const Provider = dynamic(() => import("@/components/provider"), {
 	ssr: false,
 });
 
-
-
 export default function RootLayout({
 	children,
 }: {
@@ -44,24 +44,25 @@ export default function RootLayout({
 			<body
 				className={`${
 					inter.className
-				} relative min-h-screen overflow-x-hidden ${
-					isCookieAccepted ? "overflow-y-auto" : "overflow-y-hidden"
-				}`}
+				} relative min-h-screen overflow-x-hidden overflow-y-hidden`}
 			>
 				<Provider>
 					<UserAppHeader />
-					<div className=" w-screen flex pt-12 pr-4 minHeightSidebar">
+					<div className="w-screen h-[93vh] overflow-hidden flex flex-row minHeightSidebar">
 						<UserAppSidebar />
-						{children}
+						<div className="flex flex-col w-full h-auto overflow-auto mt-12">
+							{children}
+						</div>
+						<AppSignature />
 					</div>
 					<CookiesNotice
 						className={`${
 							isCookieAccepted ? acceptedCookiesClass : notAcceptedCookiesClass
 						}`}
 					/>
-					<AppSignature />
 				</Provider>
 				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
