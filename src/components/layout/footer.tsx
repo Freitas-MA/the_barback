@@ -1,6 +1,8 @@
 import { SocialIcon } from "react-social-icons/component";
 import "react-social-icons/github";
 import "react-social-icons/linkedin";
+import { FaCookieBite } from "react-icons/fa";
+import Link from "next/link";
 
 export default function AppSignature() {
 	return (
@@ -11,7 +13,7 @@ export default function AppSignature() {
 					MFreitas
 				</a>
 			</p>
-			<div className="grayscale scale-50 md:scale-100">
+			<div className="flex justify-center items-center pr-4 grayscale scale-50 md:scale-100">
 				<SocialIcon
 					style={{ scale: "0.5" }}
 					url="https://github.com/Freitas-MA"
@@ -22,6 +24,10 @@ export default function AppSignature() {
 					url="https://www.linkedin.com/in/freitas-marcos/"
 					target="__blank"
 				/>
+				<div className="border border-black md:h-8 h-4 mr-2" />
+				<Link href="/privacy-policy" className="scale-150 mx-2 ">
+					<FaCookieBite />
+				</Link>
 			</div>
 		</div>
 	);
