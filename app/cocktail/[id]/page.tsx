@@ -56,12 +56,12 @@ export default async function CocktailDetails({
 					className="rounded-md shadow-lg object-cover"
 				/>
 				<div className="flex flex-col gap-4 w-full relative">
-						<CookieButton
-							favorit={myCocktailIsFavorite}
-							name="favorite"
-							value={idDrink as string}
-							classProp="absolute top-2 md:right-20 -right-4 scale-[2] z-10"
-						/>
+					<CookieButton
+						favorit={myCocktailIsFavorite}
+						name="favorite"
+						value={idDrink as string}
+						classProp="absolute top-2 md:right-2 right-2 scale-[2] z-10"
+					/>
 					<h2 className="text-4xl w-[80%] font-bold tracking-wider ">
 						{strDrink}
 					</h2>
